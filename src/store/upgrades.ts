@@ -240,9 +240,6 @@ class UpgradesStore extends Store<Upgrades> {
             }
 
             const item = this.state.items[key]
-            if (item.sid === 'u70') {
-                console.log('Thank you', item)
-            }
             if (!item.purchased) {
                 continue
             }

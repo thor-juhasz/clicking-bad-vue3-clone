@@ -105,7 +105,7 @@ import { achievementsStore } from "@/store/achievements"
 export default defineComponent({
     data() {
         return {
-            devMode: true,
+            devMode: false,
             secondsSinceStarted: ((Date.now() - statsStore.getState().startTime) / 1000),
         }
     },
