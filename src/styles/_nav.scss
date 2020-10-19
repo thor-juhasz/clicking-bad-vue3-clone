@@ -1,0 +1,33 @@
+.nav-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin: 0 -2px 15px -2px;
+
+  a {
+    flex: 1;
+    margin: 2px;
+    min-width: 184px;
+
+    background-color: #b5b5b5;
+    border: 1px solid #8b8b8b;
+    border-radius: 5px;
+    color: #ffffff;
+    text-shadow: -1px -1px 0px #aaaaaa;
+    cursor: pointer;
+    font-weight: bold;
+    padding: 5px;
+    outline: none;
+    text-decoration: none;
+    text-align: center;
+    box-sizing: border-box;
+
+    &.active {
+      background-color: #eeeeee;
+      border-color: #a8a8a8;
+      color: #777777;
+      text-shadow: none;
+    }
+  }
+}

@@ -1,0 +1,28 @@
+.bank-info {
+  background-color: #ffffff;
+  border-radius: 8px;
+  margin: 5px 0;
+  padding: 10px;
+
+  h3 {
+    font-size: 1em;
+
+    a, a:visited, a:active {
+      cursor: pointer;
+      text-decoration: none;
+      color: #336699;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+
+    small.amount {
+      float: right;
+    }
+  }
+
+  .finance-info {
+    transition: 1s ease-in-out;
+    overflow: hidden;
+  }
+}

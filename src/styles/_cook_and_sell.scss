@@ -1,0 +1,79 @@
+@import "partials";
+
+.cook-and-sell-container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+  width: 100%;
+
+  @media screen and (min-width: 700px) and (min-height: 580px) {
+    position: fixed;
+  }
+
+  @media screen and (min-width: 700px) {
+    width: 280px;
+    height: 526px;
+  }
+
+  @media screen and (min-width: 1100px) {
+    width: 330px;
+  }
+
+  .cook-sell {
+    background: #fff;
+    border-bottom: 2px solid #ddddee;
+    border-radius: 5px;
+    margin-bottom: 15px;
+
+    #cook, #sell {
+      padding: 3px;
+      margin: 4px;
+      text-align: center;
+
+      .cook-button, .sell-button {
+        user-select: none;
+        margin: auto;
+        padding: 10px;
+        width: 220px;
+        font-weight: bold;
+        font-size: 1.1em;
+        color: #ffffff;
+        cursor: pointer;
+        border-radius: 10px;
+        border-style: solid;
+        border-width: 2px;
+      }
+    }
+
+    #cook .cook-button {
+      border-color: #2277ee;
+      background-color: #3399ff;
+      text-shadow: -1px -1px 1px #2277ee;
+    }
+
+    #sell .sell-button {
+      border-color: #00aa00;
+      background-color: #11cc33;
+      text-shadow: -1px -1px 1px #00aa00;
+    }
+  }
+
+  .risk-container {
+    color: #ffffff;
+    font-size: 1.1em;
+    padding: 3px;
+    margin-bottom: 5px;
+    text-align: center;
+  }
+
+  .last-saved {
+    color: #eeeeee;
+    font-size: 0.9em;
+    margin-bottom: 5px;
+    text-align: center;
+  }
+
+  .last-message {
+    @include message;
+  }
+}

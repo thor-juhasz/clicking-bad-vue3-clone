@@ -1,0 +1,27 @@
+@mixin message {
+  .message {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 2px;
+
+    span:first-child {
+      font-size: 1.4em;
+      line-height: 0.8em;
+      margin-right: 8px;
+      padding: 1px 0 0 0;
+    }
+
+    &.generic {
+      color: #ffffff;
+    }
+    &.good {
+      color: #aaffaa;
+    }
+    &.bad {
+      color: #ffcccc;
+    }
+    &.error {
+      color: #924f4f;
+    }
+  }
+}
