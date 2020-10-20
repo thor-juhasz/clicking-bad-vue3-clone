@@ -7,42 +7,62 @@ import { upgradesStore } from "@/store/upgrades"
 import { achievementsStore } from "@/store/achievements"
 import { messagesStore } from "@/store/messages"
 
-export const formatCurrency = (amount: number, decimals?: number): string => {
-    if (typeof decimals === "undefined") {
-        decimals = 2
-    }
-    if (amount >= 1e6) {
-        const units = [
-            "k", //   Thousand          10^3
-            "M", //   Million           10^6
-            "B", //   Billion           10^9
-            "T", //   Trillion          10^12
-            "Qa", //  Quadrillion       10^15
-            "Qi", //  Quintillion       10^18
-            "Sx", //  Sextillion        10^21
-            "Sp", //  Septillion        10^24
-            "Oc", //  Octillion         10^27
-            "Np", //  Nonillion         10^30
-            "Dc", //  Decillion         10^33
-            "Ud", //  Undecillion       10^36
-            "Dd", //  Duodecillion      10^39
-            "Td", //  Tredecillion      10^42
-            "Qad", // Quattuordecillion 10^45
-            "Qid", // Quindecillion     10^48
-            "Sxd", // Sexdecillion      10^51
-            "Spd", // Septdecillion     10^54
-            "Ocd", // Octodecillion     10^57
-            "Nod", // Novemdecillion    10^60
-            "Vg", //  Vigintillion      10^63
-            "Uvg", // Unvigintillion    10^66
-        ]
+export const getNumberOfUnits = (number: number): number => {
+    // Divide to get SI Unit engineering style numbers (1e3,1e6,1e9, etc)
+    return Math.floor(((number).toFixed(0).length - 1) / 3)
+}
+export const getNumberUnit = (number: number): string => {
+    const units = [
+        "k", //   Thousand          10^3
+        "M", //   Million           10^6
+        "B", //   Billion           10^9
+        "T", //   Trillion          10^12
+        "Qa", //  Quadrillion       10^15
+        "Qi", //  Quintillion       10^18
+        "Sx", //  Sextillion        10^21
+        "Sp", //  Septillion        10^24
+        "Oc", //  Octillion         10^27
+        "Np", //  Nonillion         10^30
+        "Dc", //  Decillion         10^33
+        "Ud", //  Undecillion       10^36
+        "Dd", //  Duodecillion      10^39
+        "Td", //  Tredecillion      10^42
+        "Qad", // Quattuordecillion 10^45
+        "Qid", // Quindecillion     10^48
+        "Sxd", // Sexdecillion      10^51
+        "Spd", // Septdecillion     10^54
+        "Ocd", // Octodecillion     10^57
+        "Nod", // Novemdecillion    10^60
+        "Vg", //  Vigintillion      10^63
+        "Uvg", // Unvigintillion    10^66
+    ]
 
-        // Divide to get SI Unit engineering style numbers (1e3,1e6,1e9, etc)
-        const unit = Math.floor(((amount).toFixed(0).length - 1) / 3) * 3
+    const unit = getNumberOfUnits(number)
+
+    return units[unit - 1]
+}
+
+/**
+ * Works much the same way as {@see formatPrice()}.
+ *
+ * Define number of decimals you want in output.
+ * Only removed if using units and decimals are =.00
+ *
+ * @param amount
+ * @param decimals
+ */
+export const formatCurrency = (amount: number, decimals: number): string => {
+    if (amount >= 1e6) {
+        const numberOfUnits = getNumberOfUnits(amount)
+        const unitName = getNumberUnit(amount)
 
         // Calculate the remainder
-        const num = amount / parseFloat('1e' + unit)
-        const unitName = units[Math.floor(unit / 3) - 1]
+        const num = amount / parseFloat('1e' + (numberOfUnits * 3))
+
+        // Correct decimals
+        if (Math.floor(num) === num) {
+            decimals = 0
+        }
 
         // Output number remainder + unitName
         return `${(new Intl.NumberFormat('en-US', { minimumFractionDigits: decimals, maximumFractionDigits: decimals })).format(num)} ${unitName}`
@@ -103,17 +123,34 @@ export const sellPrice = (amount: number, baseCost: number): number => {
     return lastBuyPrice(amount, baseCost) * statsStore.getState().sellReturn
 }
 
+/**
+ * Auto format depending on number size
+ *
+ * If number is lower than 1M, don't use number units
+ * If larger, use units.
+ * In case of using units, only shows decimals if they are != .00
+ *
+ * @param amount
+ */
 export const formatPrice = (amount: number): string => {
-    let decimals = 2
-    if (Math.floor(amount) === amount) {
-        decimals = 0
-    }
-
     if (amount < 1_000_000) {
-        return formatNumber(amount, decimals)
+        return formatNumber(amount, (Math.floor(amount) === amount) ? 0 : 2)
     }
 
-    return formatCurrency(amount, decimals)
+    const numberOfUnits = getNumberOfUnits(amount)
+    const unitName = getNumberUnit(amount)
+
+    // Calculate the remainder
+    const num = amount / parseFloat('1e' + (numberOfUnits * 3))
+
+    // Set decimals
+    const decimals = (Math.floor(num) === num) ? 0 : 2
+
+    // Output number remainder + unitName
+    return `${(new Intl.NumberFormat('en-US', {
+        minimumFractionDigits: decimals,
+        maximumFractionDigits: decimals
+    })).format(num)} ${unitName}`
 }
 
 export const getCookerAndSellerRisks = (data: Record<string, any>): number => {
