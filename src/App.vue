@@ -70,6 +70,7 @@ import { eventsStore } from "@/store/events"
 import { messagesStore } from "@/store/messages"
 import {
     fixValues,
+    formatPrice,
     loadGame,
     saveGame,
 } from "@/functions"
@@ -123,6 +124,7 @@ export default defineComponent({
             this.updateCash(ticks)
             this.updateBanks(ticks)
             this.updateAchievements()
+            this.updateTitle()
         },
         updateBatches(ticks: number): void {
             const tickSub = 1000 / this.tickInterval
@@ -196,6 +198,14 @@ export default defineComponent({
         updateAchievements(): void {
             achievementsStore.processAchievements()
         },
+        updateTitle(initial?: boolean): void {
+            if (initial) {
+                document.title = 'Clicking Bad'
+                return
+            }
+
+            document.title = `${formatPrice(cookAndSellStore.getState().cash)} | Clicking Bad`
+        },
         checkEvents(): void {
             for (const key in eventsStore.getState().items) {
                 if (!Object.prototype.hasOwnProperty.call(eventsStore.getState().items, key)) {
@@ -223,6 +233,7 @@ export default defineComponent({
 
         loadGame()
         fixValues()
+        this.updateTitle(true)
         statsStore.setLastSaveGame(Date.now())
         messagesStore.addMessage(`Game loaded!`)
 
