@@ -83,7 +83,6 @@ export default defineComponent({
         setInterval(() => {
             const newId = '_' + Math.random().toString(36).substr(2, 9)
             messagesStore.updateMessageId(this.id, newId)
-            // this.$forceUpdate()
         }, 1000)
     },
 })

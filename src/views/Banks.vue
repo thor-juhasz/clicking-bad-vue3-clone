@@ -71,8 +71,6 @@ export default defineComponent({
         toggleFinanceInfo() {
             this.showFinanceInfo = !this.showFinanceInfo
         },
-        formatCurrency: (amount: number, decimals?: number): string => formatCurrency(amount, decimals),
-        formatNumber: (amount: number, decimals?: number): string => formatNumber(amount, decimals),
     },
 })
 </script>
