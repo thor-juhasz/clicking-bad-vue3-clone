@@ -41,29 +41,6 @@ class MessagesStore extends Store<Messages> {
         return JSON.stringify({ items: this.state.items })
     }
 
-    protected valid(data: Record<any, any>): boolean {
-        if (
-            typeof data !== "object" ||
-            !Object.prototype.hasOwnProperty.call(data, 'items') ||
-            typeof data.items !== "object"
-        ) {
-            return false
-        }
-
-        const values: Record<any, any> = Object.values(data.items)
-        const filtered = values.filter((item: any) => {
-            return (
-                typeof item === "object" &&
-                Object.prototype.hasOwnProperty.call(item, 'type') &&
-                Object.prototype.hasOwnProperty.call(item, 'message') &&
-                typeof item.type === "string" &&
-                typeof item.message === "string"
-            )
-        })
-
-        return Object.keys(values).length === filtered.length
-    }
-
     public updateMessageId(id: string, newId: string): void {
         for (const message of this.state.items) {
             if (message.id !== id) {
