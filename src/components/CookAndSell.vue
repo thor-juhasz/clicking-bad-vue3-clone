@@ -278,7 +278,7 @@ export default defineComponent({
             setTimeout(function() {
                 element.style.top = endY.toString() + 'px'
                 element.style.left = endX.toString() + 'px'
-                element.style.opacity = '0%'
+                element.style.opacity = '0'
                 setTimeout(function() {
                     element.remove()
                 }, 1000)

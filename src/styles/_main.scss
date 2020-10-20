@@ -12,7 +12,7 @@ body {
     font-size: 1.3em;
     font-weight: bold;
     text-shadow: 0 1px 1px #333333;
-    opacity: 100%;
+    opacity: 1;
     transition: 1s ease-out;
 
     &.make {
@@ -126,21 +126,4 @@ a, a:visited, a:active {
 
 a:hover {
   text-decoration: underline;
-}
-
-.number-float {
-  display: none;
-  z-index: 1500;
-  position: fixed;
-  font-size: 1.3em;
-  font-weight: bold;
-  text-shadow: 0 1px 1px #333333;
-
-  .make {
-    color: #5588ff;
-  }
-
-  .sell {
-    color: #55ee55;
-  }
 }
