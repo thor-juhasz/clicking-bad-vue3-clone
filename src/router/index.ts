@@ -12,7 +12,7 @@ import Messages from '@/views/Messages.vue'
 import Misc from '@/views/Misc.vue'
 
 const routes: Array<RouteRecordRaw> = [
-    { path: '/cookers', name: 'Manufacturing', component: Cookers },
+    { path: '/cookers', name: 'Manufacturing', component: Cookers, alias: '/' },
     { path: '/sellers', name: 'Distribution', component: Sellers },
     { path: '/upgrades', name: 'Upgrades', component: Upgrades },
     { path: '/laundering', name: 'Laundering', component: Banks },
