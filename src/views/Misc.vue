@@ -147,7 +147,20 @@ export default defineComponent({
         },
     },
     methods: {
-        reset(all?: boolean) { resetGame(all) },
+        reset(all?: boolean) {
+            if (all) {
+                const confirmed = confirm(`Are you sure? You'll lose everything, including all Achievements.`)
+                if (confirmed) {
+                    resetGame(true)
+                }
+                return
+            }
+
+            const confirmed = confirm(`Are you sure? You'll lose everything except Achievements.`)
+            if (confirmed) {
+                resetGame()
+            }
+        },
         saveGame() { saveGame() },
         loadGame() { loadGame() },
         createBackup() {
