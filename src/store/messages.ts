@@ -84,6 +84,7 @@ class MessagesStore extends Store<Messages> {
         } as Message
 
         this.state.items.push(msg)
+        this.pruneMessages()
     }
 
     public addGoodMessage(message: string): void {
@@ -95,6 +96,7 @@ class MessagesStore extends Store<Messages> {
         } as Message
 
         this.state.items.push(msg)
+        this.pruneMessages()
     }
 
     public addBadMessage(message: string): void {
@@ -106,6 +108,7 @@ class MessagesStore extends Store<Messages> {
         } as Message
 
         this.state.items.push(msg)
+        this.pruneMessages()
     }
 
     public addErrorMessage(message: string): void {
@@ -117,6 +120,13 @@ class MessagesStore extends Store<Messages> {
         } as Message
 
         this.state.items.push(msg)
+        this.pruneMessages()
+    }
+
+    private pruneMessages(): void {
+        while (this.state.items.length > 20) {
+            this.state.items.shift()
+        }
     }
 }
 
