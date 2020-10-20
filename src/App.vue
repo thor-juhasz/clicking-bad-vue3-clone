@@ -202,12 +202,18 @@ export default defineComponent({
             achievementsStore.processAchievements()
         },
         updateTitle(initial?: boolean): void {
+            let title = `Clicking Bad`
+            const routeName: any = this.$route.name
+
+            if (typeof routeName === "string") {
+                title = `${routeName} | Clicking Bad`
+            }
             if (initial) {
-                document.title = 'Clicking Bad'
+                document.title = title
                 return
             }
 
-            document.title = `${formatPrice(cookAndSellStore.getState().cash)} | Clicking Bad`
+            document.title = `${formatPrice(cookAndSellStore.getState().cash)} | ${title}`
         },
         checkEvents(): void {
             for (const key in eventsStore.getState().items) {
