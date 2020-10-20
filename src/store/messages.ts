@@ -105,6 +105,11 @@ class MessagesStore extends Store<Messages> {
             this.state.items.shift()
         }
     }
+
+    public resetList(): void {
+        this.state.items.length = 0
+        this.state.items = []
+    }
 }
 
 export const messagesStore: MessagesStore = new MessagesStore('messages')

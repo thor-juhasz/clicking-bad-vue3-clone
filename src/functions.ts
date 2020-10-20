@@ -5,6 +5,7 @@ import { sellersStore } from "@/store/sellers"
 import { banksStore } from "@/store/banks"
 import { upgradesStore } from "@/store/upgrades"
 import { achievementsStore } from "@/store/achievements"
+import { messagesStore } from "@/store/messages"
 
 export const formatCurrency = (amount: number, decimals?: number): string => {
     if (typeof decimals === "undefined") {
@@ -194,6 +195,7 @@ export const fixValues = (): void => {
     cookersStore.fixValues()
     sellersStore.fixValues()
     banksStore.fixValues()
+    messagesStore.resetList()
     upgradesStore.fixValues()
 }
 
@@ -204,6 +206,7 @@ export const resetGame = (all?: boolean): void => {
     sellersStore.resetValues()
     banksStore.resetValues()
     upgradesStore.resetValues()
+    messagesStore.resetList()
     if (all) {
         achievementsStore.resetValues()
     }
