@@ -228,8 +228,8 @@ export default defineComponent({
 
         setTimeout(() => {
             this.gameTimer = setInterval(() => this.gameTick(), this.tickInterval)
-            this.eventTimer = setInterval(() => this.checkEvents(), 60_000)
-            this.saveTimer = setInterval(() => saveGame(), 30_000)
+            this.eventTimer = setInterval(() => this.checkEvents(), 120_000) // Every 2 minutes
+            this.saveTimer = setInterval(() => saveGame(), 30_000) // Every 30 seconds
             messagesStore.addMessage(`Welcome to Clicking Bad, bitch.`)
         }, 25)
     },
