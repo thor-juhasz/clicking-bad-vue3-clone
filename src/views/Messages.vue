@@ -6,8 +6,9 @@
 
 <script lang="ts">
 import { defineComponent } from "vue"
+import { Message as MessageType } from "@/types/messages"
 import MessageComponent from "@/components/Message.vue"
-import { Message as MessageType, messagesStore } from '@/store/messages'
+import { messagesStore } from '@/store/messages'
 
 export default defineComponent({
     components: { MessageComponent },

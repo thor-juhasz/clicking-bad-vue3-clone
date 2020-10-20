@@ -7,7 +7,8 @@
 
 <script lang="ts">
 import { defineComponent } from "vue"
-import { messagesStore, MessageType } from "@/store/messages"
+import { MessageType } from "@/types/messages"
+import { messagesStore } from "@/store/messages"
 
 export default defineComponent({
     props: {

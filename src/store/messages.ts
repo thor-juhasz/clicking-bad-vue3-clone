@@ -1,28 +1,25 @@
-import { Store } from './store-class'
-
-export enum MessageType {
-    Generic = 'generic',
-    Good = 'good',
-    Bad = 'bad',
-    Error = 'error',
-}
-
-export interface Message extends Object {
-    id: string
-    type: MessageType
-    message: string
-    time: number
-}
+import { reactive, readonly } from "vue"
+import { Message, MessageType } from "@/types/messages"
 
 interface Messages extends Object {
     items: Array<Message>
 }
 
-class MessagesStore extends Store<Messages> {
-    protected data(): Messages {
+class MessagesStore<T extends Messages> {
+    protected state: T
+
+    constructor() {
+        this.state = reactive(this.data()) as T
+    }
+
+    protected data(): T {
         return {
-            items: [],
-        }
+            items: [] as Message[],
+        } as T
+    }
+
+    public getState(): T {
+        return readonly(this.state) as T
     }
 
     public loadFromStorage(data: Messages) {
@@ -112,4 +109,4 @@ class MessagesStore extends Store<Messages> {
     }
 }
 
-export const messagesStore: MessagesStore = new MessagesStore('messages')
+export const messagesStore: MessagesStore<Messages> = new MessagesStore()
