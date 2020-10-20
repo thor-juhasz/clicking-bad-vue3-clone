@@ -4,7 +4,7 @@
     </div>
 
     <div class="content">
-        <div class="game-updated">
+        <div v-if="gameUpdated()" class="game-updated">
             <span>The game has been updated! It may be wise to create a backup before refreshing.</span>
         </div>
 
@@ -103,6 +103,9 @@ export default defineComponent({
         getUpdatedAt: (): string => (new Date(pkg.updatedAt)).toString(),
     },
     methods: {
+        gameUpdated() {
+            return false
+        },
         gameTick(): void {
             const tickTime = Date.now()
             let ticks = Math.round((tickTime - this.lastTickTime) / this.tickInterval)
