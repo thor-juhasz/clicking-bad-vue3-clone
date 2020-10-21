@@ -8,8 +8,10 @@ const vm = createApp(App)
 
 if (process.env.VUE_APP_GA_ID) {
     vm.use(VueGtag, {
-        config: { id: process.env.VUE_APP_GA_ID },
-    }, router)
+        property: {
+            id: process.env.VUE_APP_GA_ID
+        },
+    })
 }
 
 vm.use(router).mount('#app')
