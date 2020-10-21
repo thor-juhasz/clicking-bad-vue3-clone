@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router"
-
+import { trackRouter } from "vue-gtag-next"
 /**
  * Vue components of actual routes
  */
@@ -21,7 +21,13 @@ const routes: Array<RouteRecordRaw> = [
     { path: '/misc', name: 'Options & Stats', component: Misc },
 ]
 
-export default createRouter({
+const router = createRouter({
     history: createWebHistory(process.env.BASE_URL),
     routes,
 })
+
+if (process.env.VUE_APP_GA_ID) {
+    trackRouter(router)
+}
+
+export default router
