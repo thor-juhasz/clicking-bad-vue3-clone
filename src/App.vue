@@ -69,7 +69,6 @@ import Achievement from "@/types/achievements"
 import { eventsStore } from "@/store/events"
 import { messagesStore } from "@/store/messages"
 import {
-    fixValues,
     formatPrice,
     loadGame,
     saveGame,
@@ -241,10 +240,8 @@ export default defineComponent({
         }
 
         loadGame()
-        fixValues()
         this.updateTitle(true)
         statsStore.setLastSaveGame(Date.now())
-        messagesStore.addMessage(`Game loaded!`)
 
         setTimeout(() => {
             this.gameTimer = setInterval(() => this.gameTick(), this.tickInterval)

@@ -94,7 +94,14 @@
 <script lang="ts">
 import { defineComponent } from "vue"
 import { statsStore } from '@/store/stats'
-import { formatNumber, getFromStorage, loadGame, resetGame, saveGame } from '@/functions'
+import {
+    formatNumber,
+    getFromStorage,
+    importGame,
+    loadGame,
+    resetGame,
+    saveGame,
+} from '@/functions'
 import { cookAndSellStore } from '@/store/cook-and-sell'
 import { cookersStore } from "@/store/cookers"
 import { sellersStore } from "@/store/sellers"
@@ -172,7 +179,10 @@ export default defineComponent({
             const data: HTMLInputElement = this.$refs.gameData as HTMLInputElement
             if (data.value === 'THANK YOU!') {
                 upgradesStore.applyThankYou()
+                return
             }
+
+            importGame(data.value)
         },
 
         getFromStorage(key: string) {

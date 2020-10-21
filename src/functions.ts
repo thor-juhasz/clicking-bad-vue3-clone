@@ -184,33 +184,6 @@ export const getUnlockedItems = (data: Record<string, any>, compareRps: number):
     return items
 }
 
-export const getFromStorage = (): object => {
-    const storage = localStorage.getItem(`cbvc`)
-    if (!storage) {
-        throw new TypeError("No data in storage")
-    }
-
-    const decodedStorage = JSON.parse(atob(storage))
-    if (typeof decodedStorage !== "object") {
-        throw new TypeError("Corrupt data in storage")
-    }
-
-    for (const key in decodedStorage) {
-        if (!Object.prototype.hasOwnProperty.call(decodedStorage, key)) {
-            continue
-        }
-
-        const item = JSON.parse(atob(decodedStorage[key]))
-        if (typeof item !== "object") {
-            throw new TypeError("Corrupt data in storage")
-        }
-
-        decodedStorage[key] = item
-    }
-
-    return decodedStorage
-}
-
 export const saveGame = (): void => {
     statsStore.setLastSaveGame(Date.now())
     const stores = {
@@ -254,12 +227,8 @@ export const resetGame = (all?: boolean): void => {
     }, 100)
 }
 
-export const loadGame = (): void => {
-    let data: any
-    try {
-        data = getFromStorage()
-    } catch (error) {
-        // Error happened, no data to be loaded
+const loadData = (data: any) => {
+    if (typeof data !== "object") {
         return
     }
 
@@ -295,4 +264,57 @@ export const loadGame = (): void => {
     }
 
     fixValues()
+}
+
+const decodeData = (data: string): object => {
+    const decodedData = JSON.parse(atob(data))
+    if (typeof decodedData !== "object") {
+        throw new TypeError("Corrupt data in storage")
+    }
+
+    for (const key in decodedData) {
+        if (!Object.prototype.hasOwnProperty.call(decodedData, key)) {
+            continue
+        }
+
+        const item = JSON.parse(atob(decodedData[key]))
+        if (typeof item !== "object") {
+            throw new TypeError("Corrupt data in storage")
+        }
+
+        decodedData[key] = item
+    }
+
+    return decodedData
+}
+
+export const getFromStorage = (): object => {
+    const storage = localStorage.getItem(`cbvc`)
+    if (!storage) {
+        throw new TypeError("No data in storage")
+    }
+
+    return decodeData(storage)
+}
+
+export const loadGame = (): void => {
+    let data: any
+    try {
+        data = getFromStorage()
+    } catch (error) {
+        // Error happened, no data to be loaded
+        return
+    }
+
+    loadData(data)
+
+    messagesStore.addMessage(`Game loaded!`)
+}
+
+export const importGame = (data: string): void => {
+    const decodedData = decodeData(data)
+
+    loadData(decodedData)
+
+    messagesStore.addMessage(`Game imported!`)
 }
