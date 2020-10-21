@@ -1,7 +1,6 @@
 {
   "name": "clicking-bad-clone",
   "version": "0.1.0",
-  "updatedAt": "2020-10-17T01:51:02.534+0200",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",

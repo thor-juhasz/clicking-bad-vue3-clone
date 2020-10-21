@@ -40,7 +40,7 @@
     <footer>
         <p>
             ©2013 nullism.com, version <b>{{ getVersion }}</b>
-            updated on <b>{{ getUpdatedAt }}</b> &mdash; now with less beta, bitch.
+            updated on <strong>{{ getUpdatedAt }}</strong> &mdash; now with less beta, bitch.
             [<a href="http://clickingbad.tumblr.com" target="_blank">Dev Blog</a>]
             [<a href="https://github.com/nullism/clickingbad/issues/new" target="_blank">Report Bug (GitHub)</a>]
             [<a href="https://play.google.com/store/apps/details?id=com.nullism.clickingbad" target="_blank">Free Android App</a>]
@@ -76,6 +76,12 @@ import {
 
 export default defineComponent({
     components: { CookAndSell },
+    props: {
+        buildTime: {
+            type: Number,
+            required: true,
+        },
+    },
     data: () => {
         return {
             gameTimer: 0,
@@ -99,7 +105,7 @@ export default defineComponent({
         banksTotal: (): number => Object.keys(banksStore.getState().items).length,
         achievementsTotal: (): number => Object.keys(achievementsStore.getState().items).length,
         getVersion: (): string => pkg.version,
-        getUpdatedAt: (): string => (new Date(pkg.updatedAt)).toString(),
+        getUpdatedAt(): string { return (new Date(this.buildTime)).toString() },
     },
     methods: {
         gameUpdated() {
