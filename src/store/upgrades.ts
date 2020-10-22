@@ -172,7 +172,7 @@ class UpgradesStore extends Store<Upgrades> {
 
         if (parts[2] === 'rps') {
             cookersStore.modifyCookerRps(parts[1], item.mod)
-            statsStore.modifyCookerRps(item.mod)
+            statsStore.modifyCookerRps(item.mod * cooker.amount)
         }
         if (parts[2] === 'risk') {
             cookersStore.modifyCookerRisk(parts[1], item.mod)
@@ -193,7 +193,7 @@ class UpgradesStore extends Store<Upgrades> {
 
         if (parts[2] === 'rps') {
             sellersStore.modifySellerRps(parts[1], item.mod)
-            statsStore.modifySellerRps(item.mod)
+            statsStore.modifySellerRps(item.mod * seller.amount)
         }
         if (parts[2] === 'risk') {
             sellersStore.modifySellerRisk(parts[1], item.mod)
@@ -214,7 +214,7 @@ class UpgradesStore extends Store<Upgrades> {
 
         if (parts[2] === 'rps') {
             banksStore.modifyBankRps(parts[1], item.mod)
-            statsStore.modifyBankRps(item.mod)
+            statsStore.modifyBankRps(item.mod * bank.amount)
         }
     }
 
