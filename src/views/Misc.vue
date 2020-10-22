@@ -81,10 +81,10 @@
             <br><br>
 
             <p>Modifiers</p>
-            <button>Give 1M batches</button>
-            <button>Give 1Qi batches</button>
-            <button>Give $1 M cash</button>
-            <button>Give $1 Qi cash</button>
+            <button @click.exact="giveBatches(1_000_000)">Give 1M batches</button>
+            <button @click.exact="giveBatches(1_000_000_000_000_000_000)">Give 1Qi batches</button>
+            <button @click.exact="giveCash(1_000_000)">Give $1 M cash</button>
+            <button @click.exact="giveCash(1_000_000_000_000_000_000)">Give $1 Qi cash</button>
             <button @click.exact="addPlayTime()">Add 10 minutes playtime</button>
             <button @click.exact="addTotalTime()">Add 10 minutes total playtime</button>
         </div>
@@ -112,7 +112,7 @@ import { achievementsStore } from "@/store/achievements"
 export default defineComponent({
     data() {
         return {
-            devMode: false,
+            devMode: process.env.NODE_ENV === 'development',
             secondsSinceStarted: ((Date.now() - statsStore.getState().startTime) / 1000),
         }
     },
@@ -253,6 +253,12 @@ export default defineComponent({
                 console.log(achievementsStore.getState().items)
             }
         },
+        giveBatches(amount: number) {
+            cookAndSellStore.modifyBatches(amount)
+        },
+        giveCash(amount: number) {
+            cookAndSellStore.modifyCash(amount)
+        },
         addPlayTime() {
             statsStore.modifyTimePlayed(10 * 60 * 1000)
         },
@@ -260,12 +266,6 @@ export default defineComponent({
             statsStore.modifyStartTime(-Math.abs(10 * 60 * 1000))
         },
     },
-    // emits: {
-    //     'game-saved': (time: number): boolean => {
-    //         const now = Date.now()
-    //         return ((now - 250) <= time && (now + 250) >= time)
-    //     },
-    // },
     created() {
         setInterval(() => {
             this.secondsSinceStarted = Math.floor((Date.now() - statsStore.getState().startTime) / 1000)
