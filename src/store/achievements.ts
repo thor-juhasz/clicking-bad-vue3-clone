@@ -87,6 +87,7 @@ class AchievementsStore extends Store<Achievements> {
 
     private setUnlocked(sid: string): void {
         this.state.items[sid].unlocked = true
+        this.state.items[sid].hidden = false
     }
 
     public processAchievements(): void {
