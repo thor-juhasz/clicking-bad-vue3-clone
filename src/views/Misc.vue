@@ -46,13 +46,8 @@
         <div class="credits">
             <h3>Credits</h3>
             <ul>
-                <li><b>Aaron Meier</b> - Programming and design</li>
-                <li><b>Cody Stevens</b> - Name</li>
-                <li><b>Dustin Lee</b> - Concept</li>
-                <li>
-                    <strong><a href="https://github.com/nullism/clickingbad" target="_blank">GitHub</a> Contributors</strong>
-                    - nullism, Pringley, atomicstack, dakotacody, csssuf, TooDumbForAName, gmmeyer, paac, jwalt333
-                </li>
+                <li><strong>Thor Juhasz</strong> &mdash; Development of the [<a href="https://github.com/thor-juhasz/clicking-bad-vue3-clone/" target="_blank" rel="noopener">VueJS clone</a>]</li>
+                <li><strong>Aaron Meier</strong> &mdash; Programming and design of the [<a href="http://clickingbad.nullism.com/" rel="external nofollow" title="Original Clicking Bad by nullism">original game</a>]</li>
             </ul>
         </div>
 

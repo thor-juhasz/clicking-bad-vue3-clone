@@ -39,11 +39,9 @@
 
     <footer>
         <p>
-            ©2013 nullism.com, version <b>{{ getVersion }}</b>
-            updated on <strong>{{ getUpdatedAt }}</strong> &mdash; now with less beta, bitch.
-            [<a href="http://clickingbad.tumblr.com" target="_blank">Dev Blog</a>]
-            [<a href="https://github.com/nullism/clickingbad/issues/new" target="_blank">Report Bug (GitHub)</a>]
-            [<a href="https://play.google.com/store/apps/details?id=com.nullism.clickingbad" target="_blank">Free Android App</a>]
+            &copy; juhasz.pro, version <strong>{{ getVersion }}</strong>
+            updated on <strong>{{ getUpdatedAt }}</strong> &mdash; Clone of <a href="http://clickingbad.nullism.com/" rel="external nofollow" title="Original Clicking Bad by nullism">Clicking Bad</a> written in VueJS.
+            [<a href="https://github.com/thor-juhasz/clicking-bad-vue3-clone/issues/new" target="_blank" rel="noopener">Report Bug (GitHub)</a>]
         </p>
     </footer>
 </template>
