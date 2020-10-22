@@ -205,7 +205,6 @@ export const fixValues = (): void => {
     cookersStore.fixValues()
     sellersStore.fixValues()
     banksStore.fixValues()
-    messagesStore.resetList()
     upgradesStore.fixValues()
 }
 
@@ -216,13 +215,15 @@ export const resetGame = (all?: boolean): void => {
     sellersStore.resetValues()
     banksStore.resetValues()
     upgradesStore.resetValues()
-    messagesStore.resetList()
     if (all) {
         achievementsStore.resetValues()
     }
 
     setTimeout(function() {
         upgradesStore.fixValues()
+
+        messagesStore.resetList()
+        messagesStore.addMessage(`Game reset!`)
         saveGame()
     }, 100)
 }
@@ -262,8 +263,6 @@ const loadData = (data: any) => {
                 break
         }
     }
-
-    fixValues()
 }
 
 const decodeData = (data: string): object => {
@@ -308,6 +307,8 @@ export const loadGame = (): void => {
 
     loadData(data)
 
+    fixValues()
+    messagesStore.resetList()
     messagesStore.addMessage(`Game loaded!`)
 }
 
@@ -316,5 +317,7 @@ export const importGame = (data: string): void => {
 
     loadData(decodedData)
 
+    fixValues()
+    messagesStore.resetList()
     messagesStore.addMessage(`Game imported!`)
 }
