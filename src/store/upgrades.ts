@@ -225,7 +225,7 @@ class UpgradesStore extends Store<Upgrades> {
             }
 
             const item = this.state.items[key]
-            item.purchased = ['u28', 'u38'].includes(item.sid)
+            item.purchased = ['u28', 'u33'].includes(item.sid)
             if (['u48', 'u70'].includes(item.sid)) {
                 item.hidden = true
             }

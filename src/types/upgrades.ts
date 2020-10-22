@@ -3,7 +3,7 @@ export enum UpgradeAction {
     Sell = 'sellClick',
     MakeMultiplier = 'makeRps',
     SellMultiplier = 'sellRps',
-    BatchCost = 'batch_cost',
+    BatchCost = 'batchPurity',
 }
 
 export default interface Upgrade extends Object {

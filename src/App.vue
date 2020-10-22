@@ -10,19 +10,19 @@
 
         <nav class="nav-container">
             <router-link active-class="active" exact-active-class="" to="/cookers">
-                Manufacturing ({{ Object.keys(unlockedCookers).length }}/{{ cookersTotal }})
+                Manufacturing ({{ unlockedCookers }}/{{ cookersTotal }})
             </router-link>
             <router-link active-class="active" exact-active-class="" to="/sellers">
-                Distribution ({{ Object.keys(unlockedSellers).length }}/{{ sellersTotal }})
+                Distribution ({{ unlockedSellers }}/{{ sellersTotal }})
             </router-link>
             <router-link active-class="active" exact-active-class="" to="/upgrades">
-                Upgrades ({{ Object.keys(unlockedUpgrades).length }}/{{ upgradesTotal }})
+                Upgrades ({{ unlockedUpgrades }}/{{ upgradesTotal }})
             </router-link>
             <router-link active-class="active" exact-active-class="" to="/laundering">
-                Laundering ({{ Object.keys(unlockedBanks).length }}/{{ banksTotal }})
+                Laundering ({{ unlockedBanks }}/{{ banksTotal }})
             </router-link>
             <router-link active-class="active" exact-active-class="" to="/achievements">
-                Achievements ({{ Object.keys(unlockedAchievements).length }}/{{ achievementsTotal }})
+                Achievements ({{ unlockedAchievements }}/{{ achievementsTotal }})
             </router-link>
             <router-link active-class="active" exact-active-class="" to="/messages">
                 All Messages
@@ -58,14 +58,9 @@ import { cookAndSellStore } from "@/store/cook-and-sell"
 import { cookersStore } from "@/store/cookers"
 import { sellersStore } from "@/store/sellers"
 import { upgradesStore } from "@/store/upgrades"
-import Cooker from "@/types/cookers"
-import Seller from "@/types/sellers"
-import Upgrade from "@/types/upgrades"
 import { banksStore } from "@/store/banks"
 import { statsStore } from "@/store/stats"
-import Bank from "@/types/banks"
 import { achievementsStore } from "@/store/achievements"
-import Achievement from "@/types/achievements"
 import { eventsStore } from "@/store/events"
 import { messagesStore } from "@/store/messages"
 import {
@@ -94,18 +89,90 @@ export default defineComponent({
         }
     },
     computed: {
-        unlockedCookers: (): Record<string, Cooker> => cookersStore.unlockedCookers(),
-        unlockedSellers: (): Record<string, Seller> => sellersStore.unlockedSellers(),
-        unlockedUpgrades: (): Record<string, Upgrade> => upgradesStore.unlockedUpgrades(),
-        unlockedBanks: (): Record<string, Bank> => banksStore.unlockedBanks(),
-        unlockedAchievements: (): Record<string, Achievement> => achievementsStore.unlockedAchievements(),
-        cookersTotal: (): number => Object.keys(cookersStore.getState().items).length,
-        sellersTotal: (): number => Object.keys(sellersStore.getState().items).length,
-        upgradesTotal: (): number => Object.keys(upgradesStore.getState().items).length,
-        banksTotal: (): number => Object.keys(banksStore.getState().items).length,
-        achievementsTotal: (): number => Object.keys(achievementsStore.getState().items).length,
-        getVersion: (): string => pkg.version,
-        getUpdatedAt(): string { return (new Date(this.buildTime)).toString() },
+        unlockedCookers(): number {
+            return Object.keys(cookersStore.unlockedCookers()).length
+        },
+        unlockedSellers(): number {
+            return Object.keys(sellersStore.unlockedSellers()).length
+        },
+        unlockedUpgrades(): number {
+            let count = 0
+            for (const key in (upgradesStore.unlockedUpgrades())) {
+                if (!Object.prototype.hasOwnProperty.call(upgradesStore.unlockedUpgrades(), key)) {
+                    continue
+                }
+
+                const upgrade = upgradesStore.unlockedUpgrades()[key]
+                if (upgrade.purchased) {
+                    count++
+                }
+            }
+
+            return count
+        },
+        unlockedBanks(): number {
+            return Object.keys(banksStore.unlockedBanks()).length
+        },
+        unlockedAchievements(): number {
+            let count = 0
+            for (const key in achievementsStore.unlockedAchievements()) {
+                if (!Object.prototype.hasOwnProperty.call(achievementsStore.unlockedAchievements(), key)) {
+                    continue
+                }
+
+                const achievement = achievementsStore.unlockedAchievements()[key]
+                if (achievement.unlocked) {
+                    count++
+                }
+            }
+
+            return count
+        },
+        cookersTotal(): number {
+            return Object.keys(cookersStore.getState().items).length
+        },
+        sellersTotal(): number {
+            return Object.keys(sellersStore.getState().items).length
+        },
+        upgradesTotal(): number {
+            let count = 0
+            for (const key in (upgradesStore.getState().items)) {
+                if (!Object.prototype.hasOwnProperty.call(upgradesStore.getState().items, key)) {
+                    continue
+                }
+
+                const upgrade = upgradesStore.getState().items[key]
+                if (!upgrade.hidden || upgrade.purchased) {
+                    count++
+                }
+            }
+
+            return count
+        },
+        banksTotal(): number {
+            return Object.keys(banksStore.getState().items).length
+        },
+        achievementsTotal(): number {
+            let count = 0
+            for (const key in achievementsStore.getState().items) {
+                if (!Object.prototype.hasOwnProperty.call(achievementsStore.getState().items, key)) {
+                    continue
+                }
+
+                const achievement = achievementsStore.getState().items[key]
+                if (!achievement.hidden || achievement.unlocked) {
+                    count++
+                }
+            }
+
+            return count
+        },
+        getVersion(): string {
+            return pkg.version
+        },
+        getUpdatedAt: function(): string {
+            return (new Date(this.buildTime)).toString()
+        },
     },
     methods: {
         gameUpdated() {
