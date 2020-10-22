@@ -1,6 +1,6 @@
 import { Store } from "./store-class"
 import Bank from "@/types/banks"
-import { items as banks } from '@/data/banks.ts'
+import { banks } from '@/data/banks.ts'
 import { statsStore } from "@/store/stats"
 import {
     buyPrice,
@@ -18,7 +18,7 @@ interface Banks extends Object {
 class BanksStore extends Store<Banks> {
     protected data(): Banks {
         return {
-            items: banks,
+            items: JSON.parse(JSON.stringify(banks)),
         }
     }
 

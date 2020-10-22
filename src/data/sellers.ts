@@ -1,6 +1,6 @@
 import Seller from "@/types/sellers"
 
-export const items: Record<string, Seller> = {
+export const sellers: Record<string, Seller> = {
     s01: {
         sid: 's01',
         label: "Dealer",

@@ -1,6 +1,6 @@
 import Cooker from "@/types/cookers"
 
-export const items: Record<string, Cooker> = {
+export const cookers: Record<string, Cooker> = {
     c01: {
         sid: 'c01',
         label: "Storage Shed",

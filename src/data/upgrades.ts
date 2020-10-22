@@ -1,6 +1,6 @@
 import Upgrade, { UpgradeAction } from "@/types/upgrades"
 
-export const items: Record<string, Upgrade> = {
+export const upgrades: Record<string, Upgrade> = {
     u01: {
         sid: 'u01',
         label: "Air Fresheners",

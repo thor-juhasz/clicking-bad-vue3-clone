@@ -1,5 +1,5 @@
 import { Store } from './store-class'
-import { items as upgrades } from '@/data/upgrades.ts'
+import { upgrades } from '@/data/upgrades.ts'
 import { cookAndSellStore } from "@/store/cook-and-sell"
 import { sellersStore } from "@/store/sellers"
 import { cookersStore } from "@/store/cookers"
@@ -16,7 +16,7 @@ interface Upgrades extends Object {
 class UpgradesStore extends Store<Upgrades> {
     protected data(): Upgrades {
         return {
-            items: upgrades,
+            items: JSON.parse(JSON.stringify(upgrades)),
         }
     }
 

@@ -1,6 +1,6 @@
 import { Store } from "./store-class"
 import Achievement from "@/types/achievements"
-import { items as achievements } from '@/data/achievements'
+import { achievements } from '@/data/achievements'
 import { statsStore } from "@/store/stats"
 import { cookersStore } from "@/store/cookers"
 import { sellersStore } from "@/store/sellers"
@@ -14,7 +14,7 @@ interface Achievements extends Object {
 class AchievementsStore extends Store<Achievements> {
     protected data(): Achievements {
         return {
-            items: achievements,
+            items: JSON.parse(JSON.stringify(achievements)),
         }
     }
 

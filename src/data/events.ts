@@ -1,6 +1,6 @@
 import Event, { EventAction } from "@/types/events"
 
-export const items: Record<string, Event> = {
+export const events: Record<string, Event> = {
     e01: {
         sid: 'e01',
         name: 'cash_found_small',

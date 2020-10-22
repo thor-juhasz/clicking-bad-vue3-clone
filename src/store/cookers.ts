@@ -1,6 +1,6 @@
 import { Store } from "./store-class"
 import Cooker from "@/types/cookers"
-import { items as cookers } from "@/data/cookers.ts"
+import { cookers } from "@/data/cookers.ts"
 import { cookAndSellStore } from "@/store/cook-and-sell"
 import { statsStore } from "@/store/stats"
 import { messagesStore } from "@/store/messages"
@@ -19,7 +19,7 @@ interface Cookers extends Object {
 class CookersStore extends Store<Cookers> {
     protected data(): Cookers {
         return {
-            items: cookers,
+            items: JSON.parse(JSON.stringify(cookers)),
         }
     }
 

@@ -1,6 +1,6 @@
 import { readonly } from "vue"
 import Event, { EventAction } from "@/types/events"
-import { items as events } from "@/data/events.ts"
+import { events } from "@/data/events.ts"
 import { statsStore } from "@/store/stats"
 import { cookAndSellStore } from "@/store/cook-and-sell"
 import { cookersStore } from "@/store/cookers"
@@ -21,7 +21,7 @@ class EventsStore<T extends Events> {
 
     protected data(): T {
         return {
-            items: events,
+            items: JSON.parse(JSON.stringify(events)),
         } as T
     }
 

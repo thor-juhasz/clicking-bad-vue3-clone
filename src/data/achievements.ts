@@ -1,6 +1,6 @@
 import Achievement from "@/types/achievements"
 
-export const items: Record<string, Achievement> = {
+export const achievements: Record<string, Achievement> = {
     a01: {
         sid: 'a01',
         label: "This is kinda fun...",

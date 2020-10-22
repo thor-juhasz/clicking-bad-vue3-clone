@@ -1,6 +1,6 @@
 import { readonly } from "vue"
 import RiskLevel from "@/types/risk-levels"
-import { items as riskLevels } from "@/data/risk-levels"
+import { riskLevels } from "@/data/risk-levels"
 
 interface RiskLevels extends Object {
     items: Record<string, RiskLevel>
@@ -15,7 +15,7 @@ class RiskLevelsStore<T extends RiskLevels> {
 
     protected data(): T {
         return {
-            items: riskLevels,
+            items: JSON.parse(JSON.stringify(riskLevels)),
         } as T
     }
 

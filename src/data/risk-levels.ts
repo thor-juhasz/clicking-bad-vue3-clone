@@ -1,6 +1,6 @@
 import RiskLevel from "@/types/risk-levels"
 
-export const items: Record<string, RiskLevel> = {
+export const riskLevels: Record<string, RiskLevel> = {
     r01: {
         level: 0.000_1,
         label: 'nearly impossible',
