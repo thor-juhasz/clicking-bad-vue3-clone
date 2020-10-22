@@ -171,12 +171,12 @@ export default defineComponent({
         getDeaRiskPercentage(): string {
             const riskPercentage = cookersStore.getRisks() + sellersStore.getRisks()
 
-            return formatNumber(riskPercentage * 100, 1)
+            return formatNumber(riskPercentage * 100, 0)
         },
         getIrsRiskPercentage(): string {
             const riskPercentage = cookAndSellStore.getIrsRisk()
 
-            return formatNumber(riskPercentage * 100, 1)
+            return formatNumber(riskPercentage * 100, 0)
         },
         getLastMessage(): Message {
             return messagesStore.getState().items[messagesStore.getState().items.length - 1]
