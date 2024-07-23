@@ -1,12 +1,12 @@
 <template>
-    <CookerComponent v-for="item in unlockedCookers" v-bind="item" :key="item.sid"/>
+    <CookerComponent v-for="item in unlockedCookers" v-bind="item" :key="item.sid" />
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue"
+import { defineComponent } from 'vue'
 import CookerComponent from '@/components/Cooker.vue'
 import CookerType from '@/types/cookers'
-import { cookersStore } from "@/store/cookers"
+import { cookersStore } from '@/store/cookers'
 
 export default defineComponent({
     components: { CookerComponent },

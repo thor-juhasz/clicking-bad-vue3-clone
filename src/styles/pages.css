@@ -1,0 +1,10 @@
+@import "_pages/purchase_pages.css";
+@import "_pages/upgrades.css";
+@import "_pages/messages.css";
+@import "_pages/misc.css";
+
+.page-container {
+  display: flex;
+  flex-direction: column-reverse;
+  flex-shrink: 3;
+}

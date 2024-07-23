@@ -1,4 +1,4 @@
-export default interface Cooker extends Object {
+export default interface Cooker {
     sid: string,
     label: string
     description: string

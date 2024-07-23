@@ -1,10 +1,10 @@
-import Seller from "@/types/sellers"
+import Seller from '@/types/sellers'
 
 export const sellers: Record<string, Seller> = {
     s01: {
         sid: 's01',
-        label: "Dealer",
-        description: "A common street thug to sell your goods",
+        label: 'Dealer',
+        description: 'A common street thug to sell your goods',
         amount: 0,
         risk: 0.03,
         rps: 0.2,
@@ -15,8 +15,8 @@ export const sellers: Record<string, Seller> = {
     },
     s02: {
         sid: 's02',
-        label: "Drug Mule",
-        description: "Someone to stuff drugs in their rectum and distribute them",
+        label: 'Drug Mule',
+        description: 'Someone to stuff drugs in their rectum and distribute them',
         amount: 0,
         risk: 0.005,
         rps: 1,
@@ -27,8 +27,8 @@ export const sellers: Record<string, Seller> = {
     },
     s03: {
         sid: 's03',
-        label: "Drug Van",
-        description: "A run-down van that actively seeks out customers",
+        label: 'Drug Van',
+        description: 'A run-down van that actively seeks out customers',
         amount: 0,
         risk: 0.05,
         rps: 8,
@@ -39,8 +39,8 @@ export const sellers: Record<string, Seller> = {
     },
     s04: {
         sid: 's04',
-        label: "Sleazy Lawyer",
-        description: "Reduces your risk of getting charged by the DEA, also distributes some product on the side",
+        label: 'Sleazy Lawyer',
+        description: 'Reduces your risk of getting charged by the DEA, also distributes some product on the side',
         amount: 0,
         risk: -0.05,
         rps: 10,
@@ -51,8 +51,8 @@ export const sellers: Record<string, Seller> = {
     },
     s05: {
         sid: 's05',
-        label: "Night Club",
-        description: "Purchase a run down night club and sell your classy product to the patrons",
+        label: 'Night Club',
+        description: 'Purchase a run down night club and sell your classy product to the patrons',
         amount: 0,
         risk: 0.05,
         rps: 100,
@@ -63,8 +63,8 @@ export const sellers: Record<string, Seller> = {
     },
     s06: {
         sid: 's06',
-        label: "Drug Cartel",
-        description: "Drug cartels can move a lot of product, but their services are not free",
+        label: 'Drug Cartel',
+        description: 'Drug cartels can move a lot of product, but their services are not free',
         amount: 0,
         risk: 0.10,
         rps: 400,
@@ -75,8 +75,8 @@ export const sellers: Record<string, Seller> = {
     },
     s07: {
         sid: 's07',
-        label: "DEA Mole",
-        description: "Hire a DEA informant, which allows for increased and discreet distribution while reducing risk",
+        label: 'DEA Mole',
+        description: 'Hire a DEA informant, which allows for increased and discreet distribution while reducing risk',
         amount: 0,
         risk: -0.05,
         rps: 1_000,
@@ -87,8 +87,8 @@ export const sellers: Record<string, Seller> = {
     },
     s08: {
         sid: 's08',
-        label: "Foreign Diplomat",
-        description: "Hire a foreign diplomat to partner with the best drug pushers in their respective countries and reduce risk",
+        label: 'Foreign Diplomat',
+        description: 'Hire a foreign diplomat to partner with the best drug pushers in their respective countries and reduce risk',
         amount: 0,
         risk: -0.05,
         rps: 5_000,
@@ -99,8 +99,8 @@ export const sellers: Record<string, Seller> = {
     },
     s09: {
         sid: 's09',
-        label: "City Police Force",
-        description: "Pay off an entire city police force. All of them, even the by-the-book detectives, greatly reducing risk",
+        label: 'City Police Force',
+        description: 'Pay off an entire city police force. All of them, even the by-the-book detectives, greatly reducing risk',
         amount: 0,
         risk: -0.1,
         rps: 10_500,
@@ -111,8 +111,8 @@ export const sellers: Record<string, Seller> = {
     },
     s10: {
         sid: 's10',
-        label: "Crooked Senator",
-        description: "This crooked member of the senate will provide you with some of the best distribution channels as well as help keep the fed outta your biznaz",
+        label: 'Crooked Senator',
+        description: 'This crooked member of the senate will provide you with some of the best distribution channels as well as help keep the fed outta your biznaz',
         amount: 0,
         risk: -0.1,
         rps: 45_000,
@@ -123,8 +123,8 @@ export const sellers: Record<string, Seller> = {
     },
     s11: {
         sid: 's11',
-        label: "Rival Cartel",
-        description: "Pay off a rival cartel, greatly increasing the demand for your product",
+        label: 'Rival Cartel',
+        description: 'Pay off a rival cartel, greatly increasing the demand for your product',
         amount: 0,
         risk: 0.25,
         rps: 105_000,
@@ -135,8 +135,8 @@ export const sellers: Record<string, Seller> = {
     },
     s12: {
         sid: 's12',
-        label: "El Presidente",
-        description: "Partner with a dictator of an impoverished country for unchecked meth distribution",
+        label: 'El Presidente',
+        description: 'Partner with a dictator of an impoverished country for unchecked meth distribution',
         amount: 0,
         risk: -0.05,
         rps: 1_150_000,
@@ -147,7 +147,7 @@ export const sellers: Record<string, Seller> = {
     },
     s13: {
         sid: 's13',
-        label: "Space Mules",
+        label: 'Space Mules',
         description: "Space mules ain't your daddy's drug mule. They supply extra terrestrial beings with a steady stream of your sweet sweet crystal",
         amount: 0,
         risk: 0.000_001,
@@ -159,7 +159,7 @@ export const sellers: Record<string, Seller> = {
     },
     s14: {
         sid: 's14',
-        label: "Meth-Mart",
+        label: 'Meth-Mart',
         description: "The MM franchise is an easy way to distribute product to shoppers, but it's very risky, as you would imagine",
         amount: 0,
         risk: 0.55,
@@ -171,8 +171,8 @@ export const sellers: Record<string, Seller> = {
     },
     s15: {
         sid: 's15',
-        label: "Meth Horizon",
-        description: "According to commander Tony Drake, these high speed shuttles quickly transport product from the far edges of the solar system",
+        label: 'Meth Horizon',
+        description: 'According to commander Tony Drake, these high speed shuttles quickly transport product from the far edges of the solar system',
         amount: 0,
         risk: 0.000_01,
         rps: 492_005_000,
@@ -183,7 +183,7 @@ export const sellers: Record<string, Seller> = {
     },
     s16: {
         sid: 's16',
-        label: "Intergalactic Meth Relay",
+        label: 'Intergalactic Meth Relay',
         description: "Distribute meth to crank-lovin' sentient life from the far reaches of the galaxy",
         amount: 0,
         risk: 0.000_01,
@@ -195,7 +195,7 @@ export const sellers: Record<string, Seller> = {
     },
     s17: {
         sid: 's17',
-        label: "Church of the Crystal",
+        label: 'Church of the Crystal',
         description: "Your meth is pure enough that there are some who believe Truth can be seen on the crystal's surface",
         amount: 0,
         risk: 0.000_01,

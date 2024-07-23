@@ -6,7 +6,7 @@ export enum UpgradeAction {
     BatchCost = 'batchPurity',
 }
 
-export default interface Upgrade extends Object {
+export default interface Upgrade {
     sid: string,
     label: string
     description: string

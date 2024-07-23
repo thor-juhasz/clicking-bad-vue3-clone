@@ -16,94 +16,63 @@
     </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue"
-import { cookAndSellStore } from "@/store/cook-and-sell"
-import { banksStore } from "@/store/banks"
+<script setup lang="ts">
+import { computed } from 'vue'
+import { cookAndSellStore } from '@/store/cook-and-sell'
+import { banksStore } from '@/store/banks'
 import {
-    buyPrice,
+    buyPrice as getBuyPrice,
     formatNumber,
     formatPrice,
     formatRps,
-    sellPrice
-} from "@/functions"
+} from '@/functions'
 
-export default defineComponent({
-    props: {
-        sid: {
-            type: String,
-            required: true,
-        },
-        label: {
-            type: String,
-            required: true,
-        },
-        description: {
-            type: String,
-            required: true,
-        },
-        amount: {
-            type: Number,
-            required: true,
-        },
-        rps: {
-            type: Number,
-            required: true,
-        },
-        unlockRps: {
-            type: Number,
-            required: true,
-        },
-        baseCost: {
-            type: Number,
-            required: true,
-        },
-        cost: {
-            type: Number,
-            required: true,
-        },
-        unlocked: {
-            type: Boolean,
-            default: false,
-        },
-    },
-    data() {
-        return {
-            cookAndSell: cookAndSellStore.getState(),
+const props = withDefaults(
+    defineProps<{
+        sid: string
+        label: string
+        description: string
+        amount: number
+        rps: number
+        unlockRps: number
+        baseCost: number
+        cost: number
+        unlocked?: boolean
+    }>(),
+    {
+        unlocked: false,
+    }
+)
 
-            itemCost: this.cost,
-        }
-    },
-    computed: {
-        getAmount(): string {
-            return formatNumber(this.amount, 0)
-        },
-        getFormattedPrice(): string {
-            return formatPrice(this.buyPrice)
-        },
-        getRps(): string {
-            return formatRps(this.rps)
-        },
-        isBuyDisabled(): boolean {
-            return this.buyPrice > cookAndSellStore.getState().cash
-        },
-        isSellDisabled(): boolean {
-            return this.amount === 0
-        },
-        buyPrice(): number {
-            return buyPrice(this.amount, this.baseCost)
-        },
-        sellPrice(): number {
-            return sellPrice(this.amount, this.baseCost)
-        },
-    },
-    methods: {
-        buyBank(): void {
-            banksStore.buyBank(this.sid)
-        },
-        sellBank(): void {
-            banksStore.sellBank(this.sid)
-        }
-    },
+const getAmount= computed(() => {
+    return formatNumber(props.amount, 0)
 })
+
+const getFormattedPrice = computed(() => {
+    return formatPrice(buyPrice.value)
+})
+
+const getRps = computed(() => {
+    return formatRps(props.rps)
+})
+
+const isBuyDisabled = computed(() => {
+    return buyPrice.value > cookAndSellStore.getState().cash
+})
+
+const isSellDisabled = computed(() => {
+    return props.amount === 0
+})
+
+const buyPrice = computed(() => {
+    return getBuyPrice(props.amount, props.baseCost)
+})
+
+function buyBank() {
+    banksStore.buyBank(props.sid)
+}
+
+function sellBank() {
+    banksStore.sellBank(props.sid)
+}
 </script>

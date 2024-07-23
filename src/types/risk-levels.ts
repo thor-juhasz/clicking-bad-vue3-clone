@@ -1,4 +1,4 @@
-export default interface RiskLevel extends Object {
+export default interface RiskLevel {
     level: number,
     label: string
     color: string

@@ -1,4 +1,4 @@
-import Bank from "@/types/banks"
+import Bank from '@/types/banks'
 
 export const banks: Record<string, Bank> = {
     b01: {
@@ -10,6 +10,7 @@ export const banks: Record<string, Bank> = {
         unlockRps: 1,
         baseCost: 200,
         cost: 200,
+        unlocked: false,
     },
     b02: {
         sid: 'b02',
@@ -20,6 +21,7 @@ export const banks: Record<string, Bank> = {
         unlockRps: 5,
         baseCost: 8_000,
         cost: 8_000,
+        unlocked: false,
     },
     b03: {
         sid: 'b03',
@@ -30,6 +32,7 @@ export const banks: Record<string, Bank> = {
         unlockRps: 12,
         baseCost: 100_000,
         cost: 100_000,
+        unlocked: false,
     },
     b04: {
         sid: 'b04',
@@ -40,6 +43,7 @@ export const banks: Record<string, Bank> = {
         unlockRps: 150,
         baseCost: 1_000_000,
         cost: 1_000_000,
+        unlocked: false,
     },
     b05: {
         sid: 'b05',
@@ -50,6 +54,7 @@ export const banks: Record<string, Bank> = {
         unlockRps: 500,
         baseCost: 10_000_000,
         cost: 10_000_000,
+        unlocked: false,
     },
     b06: {
         sid: 'b06',
@@ -60,6 +65,7 @@ export const banks: Record<string, Bank> = {
         unlockRps: 5_000,
         baseCost: 100_000_000,
         cost: 100_000_000,
+        unlocked: false,
     },
     b07: {
         sid: 'b07',
@@ -70,6 +76,7 @@ export const banks: Record<string, Bank> = {
         unlockRps: 50_000,
         baseCost: 500_000_000,
         cost: 500_000_000,
+        unlocked: false,
     },
     b08: {
         sid: 'b08',
@@ -80,6 +87,7 @@ export const banks: Record<string, Bank> = {
         unlockRps: 500_000,
         baseCost: 4_500_000_000,
         cost: 4_500_000_000,
+        unlocked: false,
     },
     b09: {
         sid: 'b09',
@@ -90,6 +98,7 @@ export const banks: Record<string, Bank> = {
         unlockRps: 5_000_000,
         baseCost: 50_500_000_000,
         cost: 50_500_000_000,
+        unlocked: false,
     },
     b10: {
         sid: 'b10',
@@ -100,6 +109,7 @@ export const banks: Record<string, Bank> = {
         unlockRps: 15_000_000,
         baseCost: 150_500_000_000,
         cost: 150_500_000_000,
+        unlocked: false,
     },
     b11: {
         sid: 'b11',
@@ -110,6 +120,7 @@ export const banks: Record<string, Bank> = {
         unlockRps: 30_000_000,
         baseCost: 750_500_000_000,
         cost: 750_500_000_000,
+        unlocked: false,
     },
     b12: {
         sid: 'b12',
@@ -120,6 +131,7 @@ export const banks: Record<string, Bank> = {
         unlockRps: 50_000_000,
         baseCost: 2_500_500_000_000,
         cost: 2_500_500_000_000,
+        unlocked: false,
     },
     b13: {
         sid: 'b13',
@@ -130,6 +142,7 @@ export const banks: Record<string, Bank> = {
         unlockRps: 125_000_000,
         baseCost: 10_000_000_000_000,
         cost: 10_000_000_000_000,
+        unlocked: false,
     },
     b14: {
         sid: 'b14',
@@ -140,5 +153,6 @@ export const banks: Record<string, Bank> = {
         unlockRps: 525_000_000,
         baseCost: 120_000_000_000_000,
         cost: 120_000_000_000_000,
+        unlocked: false,
     },
 }

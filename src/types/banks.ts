@@ -1,4 +1,4 @@
-export default interface Bank extends Object {
+export default interface Bank {
     sid: string,
     label: string
     description: string
@@ -7,4 +7,5 @@ export default interface Bank extends Object {
     unlockRps: number
     baseCost: number
     cost: number
+    unlocked: boolean
 }

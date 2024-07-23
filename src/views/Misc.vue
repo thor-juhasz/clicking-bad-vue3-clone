@@ -20,7 +20,7 @@
 
         <div class="backup">
             <h3>Backup</h3>
-            <textarea ref="gameData"></textarea>
+            <textarea ref="gameData" />
             <br>
             <button @click.exact="createBackup()">Create backup</button>
             <button @click.exact="importBackup()">Import backup</button>
@@ -87,7 +87,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue"
+import { defineComponent } from 'vue'
 import { statsStore } from '@/store/stats'
 import {
     formatNumber,
@@ -98,16 +98,16 @@ import {
     saveGame,
 } from '@/functions'
 import { cookAndSellStore } from '@/store/cook-and-sell'
-import { cookersStore } from "@/store/cookers"
-import { sellersStore } from "@/store/sellers"
-import { upgradesStore } from "@/store/upgrades"
-import { banksStore } from "@/store/banks"
-import { achievementsStore } from "@/store/achievements"
+import { cookersStore } from '@/store/cookers'
+import { sellersStore } from '@/store/sellers'
+import { upgradesStore } from '@/store/upgrades'
+import { banksStore } from '@/store/banks'
+import { achievementsStore } from '@/store/achievements'
 
 export default defineComponent({
     data() {
         return {
-            devMode: process.env.NODE_ENV === 'development',
+            devMode: import.meta.env.DEV,
             secondsSinceStarted: ((Date.now() - statsStore.getState().startTime) / 1000),
         }
     },
@@ -151,14 +151,14 @@ export default defineComponent({
     methods: {
         reset(all?: boolean) {
             if (all) {
-                const confirmed = confirm(`Are you sure? You'll lose everything, including all Achievements.`)
+                const confirmed = confirm('Are you sure? You\'ll lose everything, including all Achievements.')
                 if (confirmed) {
                     resetGame(true)
                 }
                 return
             }
 
-            const confirmed = confirm(`Are you sure? You'll lose everything except Achievements.`)
+            const confirmed = confirm('Are you sure? You\'ll lose everything except Achievements.')
             if (confirmed) {
                 resetGame()
             }
@@ -167,7 +167,7 @@ export default defineComponent({
         loadGame() { loadGame() },
         createBackup() {
             const data: HTMLInputElement = this.$refs.gameData as HTMLInputElement
-            const storage: string|null = localStorage.getItem(`cbvc`)
+            const storage: string|null = localStorage.getItem('cbvc')
             data.value = storage || ''
         },
         importBackup() {
@@ -181,7 +181,7 @@ export default defineComponent({
         },
 
         getFromStorage(key: string) {
-            const storage: any = getFromStorage()
+            const storage: object = getFromStorage()
 
             return storage[key]
         },

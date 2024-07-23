@@ -1,8 +1,8 @@
-import { readonly } from "vue"
-import RiskLevel from "@/types/risk-levels"
-import { riskLevels } from "@/data/risk-levels"
+import { readonly } from 'vue'
+import RiskLevel from '@/types/risk-levels'
+import { riskLevels } from '@/data/risk-levels'
 
-interface RiskLevels extends Object {
+interface RiskLevels {
     items: Record<string, RiskLevel>
 }
 

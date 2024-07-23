@@ -1,89 +1,78 @@
 <template>
     <div :class="getTypeClasses">
-        <span v-html="getTypeIcon"></span>
-        <span v-html="getMessage"></span>
+        <span v-html="getTypeIcon" />
+        <span v-html="getMessage" />
     </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue"
-import { MessageType } from "@/types/messages"
-import { messagesStore } from "@/store/messages"
+<script setup lang="ts">
+import { computed, onMounted } from 'vue'
+import { MessageType } from '@/types/messages'
+import { messagesStore } from '@/store/messages'
 
-export default defineComponent({
-    props: {
-        id: {
-            type: String,
-            required: true,
-        },
-        type: {
-            type: String,
-            required: true,
-        },
-        message: {
-            type: String,
-            required: true,
-        },
-        time: {
-            type: Number,
-            required: true,
-        }
-    },
-    computed: {
-        getTimestamp(): string {
-            let diff = (Date.now() - this.time) / 1000
-            if (diff < 5) {
-                return `just now`
-            } else if (diff < 60) {
-                return `${diff.toFixed(0)} seconds ago`
-            }
+const props = defineProps<{
+    id: string
+    type: string
+    message: string
+    time: number
+}>()
 
-            diff /= 60
-            if (diff < 60) {
-                return `${diff.toFixed(0)} minutes ago`
-            }
+const getTimestamp = computed(() => {
+    let diff = (Date.now() - props.time) / 1000
+    if (diff < 5) {
+        return `just now`
+    } else if (diff < 60) {
+        return `${diff.toFixed(0)} seconds ago`
+    }
 
-            diff /= 24
-            if (diff < 24) {
-                return `${diff.toFixed(0)} hours ago`
-            }
+    diff /= 60
+    if (diff < 60) {
+        return `${diff.toFixed(0)} minutes ago`
+    }
 
-            const date = new Date(this.time)
+    diff /= 24
+    if (diff < 24) {
+        return `${diff.toFixed(0)} hours ago`
+    }
 
-            return date.toLocaleString()
-        },
-        getTypeClasses(): object {
-            return {
-                message: true,
-                generic: this.type === MessageType.Generic,
-                good: this.type === MessageType.Good,
-                bad: this.type === MessageType.Bad,
-                error: this.type === MessageType.Error,
-            }
-        },
-        getTypeIcon(): string {
-            switch (this.type) {
-                case MessageType.Generic:
-                    return '&#9993;'
-                case MessageType.Good:
-                    return '&#9733;'
-                case MessageType.Bad:
-                    return '&#10007;'
-                case MessageType.Error:
-                    return '&#10007;'
-            }
+    const date = new Date(props.time)
 
-            return ''
-        },
-        getMessage(): string {
-            return `${this.message} (${this.getTimestamp})`
-        },
-    },
-    mounted() {
-        setInterval(() => {
-            const newId = '_' + Math.random().toString(36).substr(2, 9)
-            messagesStore.updateMessageId(this.id, newId)
-        }, 1000)
-    },
+    return date.toLocaleString()
+})
+
+const getTypeClasses = computed(() => {
+    return {
+        message: true,
+        generic: props.type === MessageType.Generic,
+        good: props.type === MessageType.Good,
+        bad: props.type === MessageType.Bad,
+        error: props.type === MessageType.Error,
+    }
+})
+
+const getTypeIcon = computed(() => {
+    switch (props.type) {
+        case MessageType.Generic:
+            return '&#9993;'
+        case MessageType.Good:
+            return '&#9733;'
+        case MessageType.Bad:
+            return '&#10007;'
+        case MessageType.Error:
+            return '&#10007;'
+    }
+
+    return ''
+})
+
+const getMessage = computed(() => {
+    return `${props.message} (${getTimestamp.value})`
+})
+
+onMounted(() => {
+    setInterval(() => {
+        const newId = '_' + Math.random().toString(36).substring(2, 9)
+        messagesStore.updateMessageId(props.id, newId)
+    }, 1000)
 })
 </script>

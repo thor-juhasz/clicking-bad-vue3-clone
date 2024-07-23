@@ -9,7 +9,7 @@ export enum EventAction {
     IrsAudit = 'irsAudit',
 }
 
-export default interface Event extends Object {
+export default interface Event {
     sid: string
     name: string
     chance: number

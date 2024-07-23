@@ -1,4 +1,4 @@
-import RiskLevel from "@/types/risk-levels"
+import RiskLevel from '@/types/risk-levels'
 
 export const riskLevels: Record<string, RiskLevel> = {
     r01: {

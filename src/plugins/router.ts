@@ -1,5 +1,5 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router"
-import { trackRouter } from "vue-gtag-next"
+import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
+import { trackRouter } from 'vue-gtag-next'
 /**
  * Vue components of actual routes
  */
@@ -11,7 +11,7 @@ import Achievements from '@/views/Achievements.vue'
 import Messages from '@/views/Messages.vue'
 import Misc from '@/views/Misc.vue'
 
-const routes: Array<RouteRecordRaw> = [
+export const routes: Array<RouteRecordRaw> = [
     { path: '/cookers', name: 'Manufacturing', component: Cookers, alias: '/' },
     { path: '/sellers', name: 'Distribution', component: Sellers },
     { path: '/upgrades', name: 'Upgrades', component: Upgrades },
@@ -22,11 +22,11 @@ const routes: Array<RouteRecordRaw> = [
 ]
 
 const router = createRouter({
-    history: createWebHistory(process.env.BASE_URL),
+    history: createWebHistory(import.meta.env.BASE_URL),
     routes,
 })
 
-if (process.env.VUE_APP_GA_ID) {
+if (import.meta.env.VITE_APP_GA_ID) {
     trackRouter(router)
 }
 

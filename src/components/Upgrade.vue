@@ -12,65 +12,46 @@
     </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue"
-import { cookAndSellStore } from "@/store/cook-and-sell"
-import { upgradesStore } from "@/store/upgrades"
-import { formatPrice } from "@/functions"
+<script setup lang="ts">
+import { UpgradeAction } from '@/types/upgrades'
+import { computed } from 'vue'
+import { cookAndSellStore } from '@/store/cook-and-sell'
+import { upgradesStore } from '@/store/upgrades'
+import { formatPrice } from '@/functions'
 
-export default defineComponent({
-    props: {
-        sid: {
-            type: String,
-            required: true,
-        },
-        label: {
-            type: String,
-            required: true,
-        },
-        description: {
-            type: String,
-            required: true,
-        },
-        action: {
-            required: true,
-            validator: (prop: string | null) => (typeof prop === 'string' || prop === null),
-        },
-        purchased: {
-            type: Boolean,
-            required: true,
-        },
-        mod: {
-            type: Number,
-            required: true,
-        },
-        cost: {
-            type: Number,
-            required: true,
-        },
-        preReq: {
-            default: null,
-            validator: (prop: string | null) => (typeof prop === 'string' || prop === null),
-        },
-    },
-    computed: {
-        getLabelClasses(): object {
-            return {
-                label: true,
-                purchased: this.purchased,
-            }
-        },
-        getAmount(): string {
-            return formatPrice(this.cost)
-        },
-        isBuyDisabled(): boolean {
-            return this.cost > cookAndSellStore.getState().cash
-        },
-    },
-    methods: {
-        buyUpgrade(): void {
-            upgradesStore.buyUpgrade(this.sid)
-        },
-    },
+const props = withDefaults(
+    defineProps<{
+        sid: string
+        label: string
+        description: string
+        action: UpgradeAction | string | null
+        purchased: boolean
+        mod: number
+        cost: number
+        preReq: string | null
+        hidden?: boolean
+    }>(),
+    {
+        preReq: null,
+    }
+)
+
+const getLabelClasses = computed(() => {
+    return {
+        label: true,
+        purchased: props.purchased
+    }
 })
+
+const getAmount = computed(() => {
+    return formatPrice(props.cost)
+})
+
+const isBuyDisabled = computed(() => {
+    return props.cost > cookAndSellStore.getState().cash
+})
+
+function buyUpgrade() {
+    upgradesStore.buyUpgrade(props.sid)
+}
 </script>

@@ -1,14 +1,14 @@
-import { readonly } from "vue"
-import Event, { EventAction } from "@/types/events"
-import { events } from "@/data/events.ts"
-import { statsStore } from "@/store/stats"
-import { cookAndSellStore } from "@/store/cook-and-sell"
-import { cookersStore } from "@/store/cookers"
-import { sellersStore } from "@/store/sellers"
-import { messagesStore } from "@/store/messages"
-import { formatCurrency, formatNumber } from "@/functions"
+import { readonly } from 'vue'
+import Event, { EventAction } from '@/types/events'
+import { events } from '@/data/events'
+import { statsStore } from '@/store/stats'
+import { cookAndSellStore } from '@/store/cook-and-sell'
+import { cookersStore } from '@/store/cookers'
+import { sellersStore } from '@/store/sellers'
+import { messagesStore } from '@/store/messages'
+import { formatCurrency, formatNumber } from '@/functions'
 
-interface Events extends Object {
+interface Events {
     items: Record<string, Event>
 }
 
@@ -86,13 +86,13 @@ class EventsStore<T extends Events> {
             cashFound = formatNumber(amount, 2)
         }
 
-        let message = `You found some extra cash hidden in a shoe box, worth $%amount%!`
+        let message = 'You found some extra cash hidden in a shoe box, worth $%amount%!'
         if (amount > 10_000_000_000) {
-            message = `A mystery benefactor has contributed $%amount% to your cause`
+            message = 'A mystery benefactor has contributed $%amount% to your cause'
         } else if (amount > 10_000_000) {
-            message = `You found a truck load of cash, containing $%amount% inside!`
+            message = 'You found a truck load of cash, containing $%amount% inside!'
         } else if (amount > 100_000) {
-            message = `You found a briefcase with $%amount% inside!`
+            message = 'You found a briefcase with $%amount% inside!'
         }
 
         cookAndSellStore.modifyCash(amount)
@@ -192,7 +192,7 @@ class EventsStore<T extends Events> {
         let amount = cookAndSellStore.getState().cash * mod
         amount -= cookAndSellStore.getState().bank
         if (amount < 1) {
-            messagesStore.addGoodMessage(`The DEA was unable to seize any cash`)
+            messagesStore.addGoodMessage('The DEA was unable to seize any cash')
             return
         }
 
@@ -212,7 +212,7 @@ class EventsStore<T extends Events> {
         if (risk > Math.random()) {
             const lastSeize = statsStore.getState().lastDeaBuildingSeize
             if ((now - lastSeize) < 240_000) {
-                messagesStore.addGoodMessage(`You narrowly avoided an altercation with the DEA`)
+                messagesStore.addGoodMessage('You narrowly avoided an altercation with the DEA')
                 return
             }
 
@@ -229,7 +229,7 @@ class EventsStore<T extends Events> {
             }
 
             if (picks.length < 1) {
-                messagesStore.addGoodMessage(`The DEA attempted to seize something, but they couldn't find anything to seize`)
+                messagesStore.addGoodMessage('The DEA attempted to seize something, but they couldn\'t find anything to seize')
                 return
             }
 
@@ -244,13 +244,13 @@ class EventsStore<T extends Events> {
             }
         }
 
-        messagesStore.addGoodMessage(`You were able to negotiate your way out of the DEA raid`)
+        messagesStore.addGoodMessage('You were able to negotiate your way out of the DEA raid')
     }
 
     private static eventIrsAudit(mod: number): void {
         const risk = cookAndSellStore.getIrsRisk()
         if (risk < Math.random()) {
-            messagesStore.addGoodMessage(`You were able to avoid an IRS audit`)
+            messagesStore.addGoodMessage('You were able to avoid an IRS audit')
             return
         }
 
@@ -258,12 +258,12 @@ class EventsStore<T extends Events> {
         const bank = cookAndSellStore.getState().bank
         const amount = (cash * mod) - bank
         if (amount < 1) {
-            messagesStore.addGoodMessage(`The IRS was unable to find any ill-gotten cash to seize`)
+            messagesStore.addGoodMessage('The IRS was unable to find any ill-gotten cash to seize')
             return
         }
 
         cookAndSellStore.modifyCash(-Math.abs(amount))
-        messagesStore.addBadMessage(`The IRS has confiscated $${formatCurrency(amount, 2)} of your funds`)
+        messagesStore.addBadMessage('The IRS has confiscated $${formatCurrency(amount, 2)} of your funds')
     }
 }
 

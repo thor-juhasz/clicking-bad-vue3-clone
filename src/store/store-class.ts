@@ -1,4 +1,4 @@
-import { reactive, readonly } from "vue"
+import { reactive, readonly } from 'vue'
 
 export abstract class Store<T extends Record<string, any>> {
     protected module: string

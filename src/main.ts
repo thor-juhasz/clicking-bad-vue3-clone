@@ -1,18 +1,20 @@
-import { createApp } from "vue"
-import VueGtag from "vue-gtag-next"
+import '@/styles/app.css'
 
-import router from "./router"
-import App from "./App.vue"
-import pkg from "../package.json"
+import { createApp } from 'vue'
+import VueGtag from 'vue-gtag-next'
 
-const vm = createApp(App, { buildTime: (new Date(pkg.updatedAt)).valueOf() })
+import router from '@/plugins/router'
+import App from '@/App.vue'
 
-if (process.env.VUE_APP_GA_ID) {
-    vm.use(VueGtag, {
+const app = createApp(App)
+
+if (import.meta.env.VITE_APP_GA_ID) {
+    app.use(VueGtag, {
         property: {
-            id: process.env.VUE_APP_GA_ID
+            id: import.meta.env.VITE_APP_GA_ID
         },
     })
 }
 
-vm.use(router).mount('#app')
+app.use(router)
+app.mount('#app')

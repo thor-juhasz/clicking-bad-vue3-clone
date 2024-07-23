@@ -1,6 +1,6 @@
 import { Store } from './store-class'
 
-interface CookAndSell extends Object {
+interface CookAndSell {
     batches: number
     cash: number
     bank: number
@@ -32,10 +32,10 @@ class CookAndSellStore extends Store<CookAndSell> {
             }
 
             switch (key) {
-                case "batches":
-                case "cash":
-                case "bank":
-                    if (typeof data[key] === "number") {
+                case 'batches':
+                case 'cash':
+                case 'bank':
+                    if (typeof data[key] === 'number') {
                         this.state[key] = data[key]
                     }
                     break

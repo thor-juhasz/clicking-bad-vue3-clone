@@ -1,12 +1,12 @@
 <template>
-    <UpgradeComponent v-for="item in unlockedUpgrades" v-bind="item" :key="item.sid"/>
+    <UpgradeComponent v-for="item in unlockedUpgrades" v-bind="item" :key="item.sid" />
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue"
+import { defineComponent } from 'vue'
 import UpgradeComponent from '@/components/Upgrade.vue'
 import UpgradeType from '@/types/upgrades'
-import { upgradesStore } from "@/store/upgrades"
+import { upgradesStore } from '@/store/upgrades'
 
 export default defineComponent({
     components: { UpgradeComponent },

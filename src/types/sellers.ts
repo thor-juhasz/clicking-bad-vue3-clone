@@ -1,4 +1,4 @@
-export default interface Seller extends Object {
+export default interface Seller {
     sid: string,
     label: string
     description: string

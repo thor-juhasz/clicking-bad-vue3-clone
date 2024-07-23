@@ -1,7 +1,7 @@
-import { reactive, readonly } from "vue"
-import { Message, MessageType } from "@/types/messages"
+import { reactive, readonly } from 'vue'
+import { Message, MessageType } from '@/types/messages'
 
-interface Messages extends Object {
+interface Messages {
     items: Array<Message>
 }
 
@@ -25,7 +25,7 @@ class MessagesStore<T extends Messages> {
     public loadFromStorage(data: Messages) {
         if (
             !Object.prototype.hasOwnProperty.call(data, 'items') ||
-            typeof data.items !== "object" ||
+            typeof data.items !== 'object' ||
             !Array.isArray(data.items)
         ) {
             return

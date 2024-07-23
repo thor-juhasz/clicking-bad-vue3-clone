@@ -1,10 +1,10 @@
-import Cooker from "@/types/cookers"
+import Cooker from '@/types/cookers'
 
 export const cookers: Record<string, Cooker> = {
     c01: {
         sid: 'c01',
-        label: "Storage Shed",
-        description: "A cheap shed with electricity",
+        label: 'Storage Shed',
+        description: 'A cheap shed with electricity',
         amount: 0,
         risk: 0.05,
         rps: 0.2,
@@ -15,8 +15,8 @@ export const cookers: Record<string, Cooker> = {
     },
     c02: {
         sid: 'c02',
-        label: "Used RV",
-        description: "A low cost RV, perfect for remote cooking",
+        label: 'Used RV',
+        description: 'A low cost RV, perfect for remote cooking',
         amount: 0,
         risk: 0.005,
         rps: 1,
@@ -27,8 +27,8 @@ export const cookers: Record<string, Cooker> = {
     },
     c03: {
         sid: 'c03',
-        label: "Abandoned Trailer",
-        description: "An abandoned trailer in an area heavily neglected by the police",
+        label: 'Abandoned Trailer',
+        description: 'An abandoned trailer in an area heavily neglected by the police',
         amount: 0,
         risk: 0.01,
         rps: 5,
@@ -39,8 +39,8 @@ export const cookers: Record<string, Cooker> = {
     },
     c04: {
         sid: 'c04',
-        label: "Small House",
-        description: "A small house in a bad neighborhood",
+        label: 'Small House',
+        description: 'A small house in a bad neighborhood',
         amount: 0,
         risk: 0.05,
         rps: 25,
@@ -51,8 +51,8 @@ export const cookers: Record<string, Cooker> = {
     },
     c05: {
         sid: 'c05',
-        label: "Abandoned Warehouse",
-        description: "A large abandoned warehouse with vaulted ceilings",
+        label: 'Abandoned Warehouse',
+        description: 'A large abandoned warehouse with vaulted ceilings',
         amount: 0,
         risk: 0.05,
         rps: 100,
@@ -63,8 +63,8 @@ export const cookers: Record<string, Cooker> = {
     },
     c06: {
         sid: 'c06',
-        label: "Laboratory",
-        description: "An above ground laboratory outfitted for meth production",
+        label: 'Laboratory',
+        description: 'An above ground laboratory outfitted for meth production',
         amount: 0,
         risk: 0.1,
         rps: 500,
@@ -75,8 +75,8 @@ export const cookers: Record<string, Cooker> = {
     },
     c07: {
         sid: 'c07',
-        label: "Underground Laboratory",
-        description: "An massive hidden laboratory for your discreet cooking needs",
+        label: 'Underground Laboratory',
+        description: 'An massive hidden laboratory for your discreet cooking needs',
         amount: 0,
         risk: 0.005,
         rps: 2000,
@@ -87,8 +87,8 @@ export const cookers: Record<string, Cooker> = {
     },
     c08: {
         sid: 'c08',
-        label: "Meth-o-matic 9000",
-        description: "The latest and greatest in laboratory technology, converted for meth production",
+        label: 'Meth-o-matic 9000',
+        description: 'The latest and greatest in laboratory technology, converted for meth production',
         amount: 0,
         risk: 0.1,
         rps: 13_000,
@@ -99,8 +99,8 @@ export const cookers: Record<string, Cooker> = {
     },
     c09: {
         sid: 'c09',
-        label: "Meth-o-matic 9000S",
-        description: "Just like Meth-o-matic, but features voice activated control",
+        label: 'Meth-o-matic 9000S',
+        description: 'Just like Meth-o-matic, but features voice activated control',
         amount: 0,
         risk: 0.1,
         rps: 14_000,
@@ -111,8 +111,8 @@ export const cookers: Record<string, Cooker> = {
     },
     c10: {
         sid: 'c10',
-        label: "Subterranean Complex",
-        description: "A sprawling underground complex the size of a small city",
+        label: 'Subterranean Complex',
+        description: 'A sprawling underground complex the size of a small city',
         amount: 0,
         risk: 0.005,
         rps: 50_000,
@@ -123,8 +123,8 @@ export const cookers: Record<string, Cooker> = {
     },
     c11: {
         sid: 'c11',
-        label: "Island State",
-        description: "Purchase a small island country, and turn it into a meth-based economic superpower",
+        label: 'Island State',
+        description: 'Purchase a small island country, and turn it into a meth-based economic superpower',
         amount: 0,
         risk: 0.000_000_01,
         rps: 105_000,
@@ -135,7 +135,7 @@ export const cookers: Record<string, Cooker> = {
     },
     c12: {
         sid: 'c12',
-        label: "Moonlab Alpha",
+        label: 'Moonlab Alpha',
         description: "A massive moon laboratory for cooking meth far away from the DEA's clutches",
         amount: 0,
         risk: 0.000_000_01,
@@ -147,7 +147,7 @@ export const cookers: Record<string, Cooker> = {
     },
     c13: {
         sid: 'c13',
-        label: "Meth Star",
+        label: 'Meth Star',
         description: "That's no moon... it's a man made super lab!  With tractor beams.",
         amount: 0,
         risk: 0.000_000_001,
@@ -159,7 +159,7 @@ export const cookers: Record<string, Cooker> = {
     },
     c14: {
         sid: 'c14',
-        label: "Industrial Complex",
+        label: 'Industrial Complex',
         description: "A massive industrial complex with thousands of cooks. Cautious? Nope! Effective? You're Goddamn right",
         amount: 0,
         risk: 0.55,
@@ -171,8 +171,8 @@ export const cookers: Record<string, Cooker> = {
     },
     c15: {
         sid: 'c15',
-        label: "Heisenbelt",
-        description: "A series of labs on the outer edges of the solar system that convert asteroids into pure crystal",
+        label: 'Heisenbelt',
+        description: 'A series of labs on the outer edges of the solar system that convert asteroids into pure crystal',
         amount: 0,
         risk: 0.000_001,
         rps: 492_005_000,
@@ -183,7 +183,7 @@ export const cookers: Record<string, Cooker> = {
     },
     c16: {
         sid: 'c16',
-        label: "Planetary Meth Replicator",
+        label: 'Planetary Meth Replicator',
         description: "Convert all of a planet's matter into pure crystal",
         amount: 0,
         risk: 0.000_001,
@@ -195,8 +195,8 @@ export const cookers: Record<string, Cooker> = {
     },
     c17: {
         sid: 'c17',
-        label: "Portal to The Crystalverse",
-        description: "Attempt to open a portal to another universe full of Cookies, err... Crystal Meth",
+        label: 'Portal to The Crystalverse',
+        description: 'Attempt to open a portal to another universe full of Cookies, err... Crystal Meth',
         amount: 0,
         risk: 0.1,
         rps: 21_590_000_000,

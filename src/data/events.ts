@@ -1,4 +1,4 @@
-import Event, { EventAction } from "@/types/events"
+import Event, { EventAction } from '@/types/events'
 
 export const events: Record<string, Event> = {
     e01: {

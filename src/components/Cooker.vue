@@ -17,95 +17,69 @@
     </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue"
-import { cookAndSellStore } from "@/store/cook-and-sell"
-import { cookersStore } from "@/store/cookers"
+<script setup lang="ts">
+import { computed } from 'vue'
+import { cookAndSellStore } from '@/store/cook-and-sell'
+import { cookersStore } from '@/store/cookers'
 import {
-    buyPrice,
+    buyPrice as getBuyPrice,
     formatNumber,
     formatPrice,
     formatRisk,
     formatRps,
-    sellPrice,
-} from "@/functions"
+} from '@/functions'
 
-export default defineComponent({
-    props: {
-        sid: {
-            type: String,
-            required: true,
-        },
-        label: {
-            type: String,
-            required: true,
-        },
-        description: {
-            type: String,
-            required: true,
-        },
-        amount: {
-            type: Number,
-            required: true,
-        },
-        risk: {
-            type: Number,
-            required: true,
-        },
-        rps: {
-            type: Number,
-            required: true,
-        },
-        baseCost: {
-            type: Number,
-            required: true,
-        },
-        cost: {
-            type: Number,
-            required: true,
-        },
-        unlockRps: {
-            type: Number,
-            required: true,
-        },
-        unlocked: {
-            type: Boolean,
-            default: false,
-        },
-    },
-    computed: {
-        getAmount(): string {
-            return formatNumber(this.amount, 0)
-        },
-        getFormattedPrice(): string {
-            return formatPrice(this.buyPrice)
-        },
-        getRps(): string {
-            return formatRps(this.rps)
-        },
-        getRisk(): string {
-            return formatRisk(this.risk)
-        },
-        isBuyDisabled(): boolean {
-            return this.buyPrice > cookAndSellStore.getState().cash
-        },
-        isSellDisabled(): boolean {
-            return this.amount === 0
-        },
-        buyPrice(): number {
-            return buyPrice(this.amount, this.baseCost)
-        },
-        sellPrice(): number {
-            return sellPrice(this.amount, this.baseCost)
-        },
-    },
-    methods: {
-        buyCooker(): void {
-            cookersStore.buyCooker(this.sid)
-        },
-        sellCooker(): void {
-            cookersStore.sellCooker(this.sid)
-        },
-    },
+const props = withDefaults(
+    defineProps<{
+        sid: string
+        label: string
+        description: string
+        amount: number
+        risk: number
+        rps: number
+        baseCost: number
+        cost: number
+        unlockRps: number
+        unlocked: boolean
+    }>(),
+    {
+        unlocked: false,
+    }
+)
+
+const getAmount = computed(() => {
+    return formatNumber(props.amount, 0)
 })
+
+const getFormattedPrice = computed(() => {
+    return formatPrice(buyPrice.value)
+})
+
+const getRps = computed(() => {
+    return formatRps(props.rps)
+})
+
+const getRisk = computed(() => {
+    return formatRisk(props.risk)
+})
+
+const isBuyDisabled = computed(() => {
+    return buyPrice.value > cookAndSellStore.getState().cash
+})
+
+const isSellDisabled = computed(() => {
+    return props.amount === 0
+})
+
+const buyPrice = computed(() => {
+    return getBuyPrice(props.amount, props.baseCost)
+})
+
+function buyCooker() {
+    cookersStore.buyCooker(props.sid)
+}
+
+function sellCooker() {
+    cookersStore.sellCooker(props.sid)
+}
 </script>

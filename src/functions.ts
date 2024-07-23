@@ -1,11 +1,14 @@
-import { statsStore } from "@/store/stats"
-import { cookAndSellStore } from "@/store/cook-and-sell"
-import { cookersStore } from "@/store/cookers"
-import { sellersStore } from "@/store/sellers"
-import { banksStore } from "@/store/banks"
-import { upgradesStore } from "@/store/upgrades"
-import { achievementsStore } from "@/store/achievements"
-import { messagesStore } from "@/store/messages"
+import { statsStore } from '@/store/stats'
+import { cookAndSellStore } from '@/store/cook-and-sell'
+import { cookersStore } from '@/store/cookers'
+import { sellersStore } from '@/store/sellers'
+import { banksStore } from '@/store/banks'
+import { upgradesStore } from '@/store/upgrades'
+import { achievementsStore } from '@/store/achievements'
+import { messagesStore } from '@/store/messages'
+import Bank from '@/types/banks'
+import Cooker from '@/types/cookers'
+import Seller from '@/types/sellers'
 
 export const getNumberOfUnits = (number: number): number => {
     // Divide to get SI Unit engineering style numbers (1e3,1e6,1e9, etc)
@@ -13,28 +16,28 @@ export const getNumberOfUnits = (number: number): number => {
 }
 export const getNumberUnit = (number: number): string => {
     const units = [
-        "k", //   Thousand          10^3
-        "M", //   Million           10^6
-        "B", //   Billion           10^9
-        "T", //   Trillion          10^12
-        "Qa", //  Quadrillion       10^15
-        "Qi", //  Quintillion       10^18
-        "Sx", //  Sextillion        10^21
-        "Sp", //  Septillion        10^24
-        "Oc", //  Octillion         10^27
-        "Np", //  Nonillion         10^30
-        "Dc", //  Decillion         10^33
-        "Ud", //  Undecillion       10^36
-        "Dd", //  Duodecillion      10^39
-        "Td", //  Tredecillion      10^42
-        "Qad", // Quattuordecillion 10^45
-        "Qid", // Quindecillion     10^48
-        "Sxd", // Sexdecillion      10^51
-        "Spd", // Septdecillion     10^54
-        "Ocd", // Octodecillion     10^57
-        "Nod", // Novemdecillion    10^60
-        "Vg", //  Vigintillion      10^63
-        "Uvg", // Unvigintillion    10^66
+        'k', //   Thousand          10^3
+        'M', //   Million           10^6
+        'B', //   Billion           10^9
+        'T', //   Trillion          10^12
+        'Qa', //  Quadrillion       10^15
+        'Qi', //  Quintillion       10^18
+        'Sx', //  Sextillion        10^21
+        'Sp', //  Septillion        10^24
+        'Oc', //  Octillion         10^27
+        'Np', //  Nonillion         10^30
+        'Dc', //  Decillion         10^33
+        'Ud', //  Undecillion       10^36
+        'Dd', //  Duodecillion      10^39
+        'Td', //  Tredecillion      10^42
+        'Qad', // Quattuordecillion 10^45
+        'Qid', // Quindecillion     10^48
+        'Sxd', // Sexdecillion      10^51
+        'Spd', // Septdecillion     10^54
+        'Ocd', // Octodecillion     10^57
+        'Nod', // Novemdecillion    10^60
+        'Vg', //  Vigintillion      10^63
+        'Uvg', // Unvigintillion    10^66
     ]
 
     const unit = getNumberOfUnits(number)
@@ -72,7 +75,7 @@ export const formatCurrency = (amount: number, decimals: number): string => {
 }
 
 export const formatNumber = (amount: number, decimals?: number): string => {
-    if (typeof decimals === "undefined") {
+    if (typeof decimals === 'undefined') {
         decimals = 2
     }
     return (new Intl.NumberFormat('en-US', { minimumFractionDigits: decimals, maximumFractionDigits: decimals })).format(amount)
@@ -153,7 +156,7 @@ export const formatPrice = (amount: number): string => {
     })).format(num)} ${unitName}`
 }
 
-export const getCookerAndSellerRisks = (data: Record<string, any>): number => {
+export const getCookerAndSellerRisks = (data: Record<string, Cooker | Seller>): number => {
     let risk = 0
     for (const key in data) {
         if (!Object.prototype.hasOwnProperty.call(data, key)) {
@@ -167,8 +170,8 @@ export const getCookerAndSellerRisks = (data: Record<string, any>): number => {
     return risk
 }
 
-export const getUnlockedItems = (data: Record<string, any>, compareRps: number): Record<string, any> => {
-    const items: Record<string, any> = {}
+export const getUnlockedItems = (data: Record<string, Bank | Cooker | Seller>, compareRps: number): Record<string, Bank | Cooker | Seller> => {
+    const items: Record<string, Bank | Cooker | Seller> = {}
     for (const key in data) {
         if (!Object.prototype.hasOwnProperty.call(data, key)) {
             continue
@@ -228,47 +231,42 @@ export const resetGame = (all?: boolean): void => {
     }, 100)
 }
 
-const loadData = (data: any) => {
-    if (typeof data !== "object") {
+const loadData = (data: object) => {
+    if (typeof data !== 'object') {
         return
     }
 
-    for (const key in data) {
-        if (!Object.prototype.hasOwnProperty.call(data, key)) {
-            return
-        }
-
-        const item = data[key]
+    Object.entries(data).forEach(([key, item]) => {
         switch (key) {
-            case "stats":
+            case 'stats':
                 statsStore.loadFromStorage(item)
                 break
-            case "cookAndSell":
+            case 'cookAndSell':
                 cookAndSellStore.loadFromStorage(item)
                 break
-            case "cookers":
+            case 'cookers':
                 cookersStore.loadFromStorage(item)
                 break
-            case "sellers":
+            case 'sellers':
                 sellersStore.loadFromStorage(item)
                 break
-            case "banks":
+            case 'banks':
                 banksStore.loadFromStorage(item)
                 break
-            case "upgrades":
+            case 'upgrades':
                 upgradesStore.loadFromStorage(item)
                 break
-            case "achievements":
+            case 'achievements':
                 achievementsStore.loadFromStorage(item)
                 break
         }
-    }
+    })
 }
 
 const decodeData = (data: string): object => {
     const decodedData = JSON.parse(atob(data))
-    if (typeof decodedData !== "object") {
-        throw new TypeError("Corrupt data in storage")
+    if (typeof decodedData !== 'object') {
+        throw new TypeError('Corrupt data in storage')
     }
 
     for (const key in decodedData) {
@@ -277,8 +275,8 @@ const decodeData = (data: string): object => {
         }
 
         const item = JSON.parse(atob(decodedData[key]))
-        if (typeof item !== "object") {
-            throw new TypeError("Corrupt data in storage")
+        if (typeof item !== 'object') {
+            throw new TypeError('Corrupt data in storage')
         }
 
         decodedData[key] = item
@@ -290,22 +288,22 @@ const decodeData = (data: string): object => {
 export const getFromStorage = (): object => {
     const storage = localStorage.getItem(`cbvc`)
     if (!storage) {
-        throw new TypeError("No data in storage")
+        throw new TypeError('No data in storage')
     }
 
     return decodeData(storage)
 }
 
 export const loadGame = (): void => {
-    let data: any
     try {
-        data = getFromStorage()
+        const data = getFromStorage()
+
+        loadData(data)
     } catch (error) {
         // Error happened, no data to be loaded
         return
     }
 
-    loadData(data)
 
     fixValues()
     messagesStore.resetList()

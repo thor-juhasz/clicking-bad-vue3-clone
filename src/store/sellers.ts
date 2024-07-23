@@ -1,18 +1,18 @@
-import { Store } from "./store-class"
-import Seller from "@/types/sellers"
-import { sellers } from "@/data/sellers.ts"
-import { cookAndSellStore } from "@/store/cook-and-sell"
-import { statsStore } from "@/store/stats"
-import { messagesStore } from "@/store/messages"
+import { Store } from './store-class'
+import Seller from '@/types/sellers'
+import { sellers } from '@/data/sellers'
+import { cookAndSellStore } from '@/store/cook-and-sell'
+import { statsStore } from '@/store/stats'
+import { messagesStore } from '@/store/messages'
 import {
     buyPrice,
     formatPrice,
     getCookerAndSellerRisks,
     getUnlockedItems,
     sellPrice,
-} from "@/functions"
+} from '@/functions'
 
-interface Sellers extends Object {
+interface Sellers {
     items: Record<string, Seller>
 }
 
@@ -26,7 +26,7 @@ class SellersStore extends Store<Sellers> {
     public loadFromStorage(data: Sellers) {
         if (
             !Object.prototype.hasOwnProperty.call(data, 'items') ||
-            typeof data.items !== "object"
+            typeof data.items !== 'object'
         ) {
             return
         }
@@ -36,31 +36,26 @@ class SellersStore extends Store<Sellers> {
                 continue
             }
 
-            const item: any = data.items[key]
-            for (const itemKey in item) {
-                if (!Object.prototype.hasOwnProperty.call(item, itemKey)) {
-                    continue
-                }
-
-                const itemValue: any = item[itemKey]
+            const item = data.items[key]
+            Object.entries(item).forEach(([itemKey, itemValue]) => {
                 switch (itemKey) {
-                    case "amount":
-                        if (typeof itemValue === "number") {
+                    case 'amount':
+                        if (typeof itemValue === 'number') {
                             this.state.items[key][itemKey] = itemValue
                         }
                         break
-                    case "unlocked":
-                        if (typeof itemValue === "boolean") {
+                    case 'unlocked':
+                        if (typeof itemValue === 'boolean') {
                             this.state.items[key][itemKey] = itemValue
                         }
                         break
                 }
-            }
+            })
         }
     }
 
     public loadIntoStorage(): string {
-        const data: any = {}
+        const data: Record<string, Pick<Seller, 'amount' | 'unlocked'>> = {}
         for (const key in this.state.items) {
             if (!Object.prototype.hasOwnProperty.call(this.state.items, key)) {
                 continue

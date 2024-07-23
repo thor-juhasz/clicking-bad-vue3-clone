@@ -1,10 +1,10 @@
-import Upgrade, { UpgradeAction } from "@/types/upgrades"
+import Upgrade, { UpgradeAction } from '@/types/upgrades'
 
 export const upgrades: Record<string, Upgrade> = {
     u01: {
         sid: 'u01',
-        label: "Air Fresheners",
-        description: "With the sweet sent of pine in the air, you can cook an extra batch at a time",
+        label: 'Air Fresheners',
+        description: 'With the sweet sent of pine in the air, you can cook an extra batch at a time',
         action: UpgradeAction.Make,
         purchased: false,
         mod: 1,
@@ -13,8 +13,8 @@ export const upgrades: Record<string, Upgrade> = {
     },
     u02: {
         sid: 'u02',
-        label: "Exhaust Fan",
-        description: "You can now cook 5 more batches at a time",
+        label: 'Exhaust Fan',
+        description: 'You can now cook 5 more batches at a time',
         action: UpgradeAction.Make,
         purchased: false,
         mod: 5,
@@ -23,8 +23,8 @@ export const upgrades: Record<string, Upgrade> = {
     },
     u03: {
         sid: 'u03',
-        label: "Goatee",
-        description: "Your mighty goatee intimidates buyers into buying more product; you can now sell an extra batch at a time",
+        label: 'Goatee',
+        description: 'Your mighty goatee intimidates buyers into buying more product; you can now sell an extra batch at a time',
         action: UpgradeAction.Sell,
         purchased: false,
         mod: 1,
@@ -33,8 +33,8 @@ export const upgrades: Record<string, Upgrade> = {
     },
     u04: {
         sid: 'u04',
-        label: "Industrial HVAC",
-        description: "Keep the fumes out. You can now cook 100 more batches at a time",
+        label: 'Industrial HVAC',
+        description: 'Keep the fumes out. You can now cook 100 more batches at a time',
         action: UpgradeAction.Make,
         purchased: false,
         mod: 100,
@@ -43,8 +43,8 @@ export const upgrades: Record<string, Upgrade> = {
     },
     u05: {
         sid: 'u05',
-        label: "Prescription Glasses",
-        description: "Your nerdy specs make your buyers feel they can trust you more; you can now sell 5 additional batches at a time",
+        label: 'Prescription Glasses',
+        description: 'Your nerdy specs make your buyers feel they can trust you more; you can now sell 5 additional batches at a time',
         action: UpgradeAction.Sell,
         purchased: false,
         mod: 5,
@@ -53,8 +53,8 @@ export const upgrades: Record<string, Upgrade> = {
     },
     u06: {
         sid: 'u06',
-        label: "Porkpie Hat",
-        description: "This early 20th century hat keeps the sun out of your eyes, allowing you to make an additional 50 batches at a time",
+        label: 'Porkpie Hat',
+        description: 'This early 20th century hat keeps the sun out of your eyes, allowing you to make an additional 50 batches at a time',
         action: UpgradeAction.Make,
         purchased: false,
         mod: 50,
@@ -63,8 +63,8 @@ export const upgrades: Record<string, Upgrade> = {
     },
     u07: {
         sid: 'u07',
-        label: "Mariachi Band",
-        description: "An authentic narcocorrido band to sing the tale of you and your meth. Allows you to charge an extra $5 per batch",
+        label: 'Mariachi Band',
+        description: 'An authentic narcocorrido band to sing the tale of you and your meth. Allows you to charge an extra $5 per batch',
         action: UpgradeAction.BatchCost,
         purchased: false,
         mod: 5,
@@ -73,8 +73,8 @@ export const upgrades: Record<string, Upgrade> = {
     },
     u08: {
         sid: 'u08',
-        label: "Brewing Vats",
-        description: "Cook your meth in massive vats like the pros. Allows you to cook an additional 500 batches at a time",
+        label: 'Brewing Vats',
+        description: 'Cook your meth in massive vats like the pros. Allows you to cook an additional 500 batches at a time',
         action: UpgradeAction.Make,
         purchased: false,
         mod: 500,
@@ -83,8 +83,8 @@ export const upgrades: Record<string, Upgrade> = {
     },
     u09: {
         sid: 'u09',
-        label: "Dealer Business Cards",
-        description: "Improves sale rate of your dealers by .1/s",
+        label: 'Dealer Business Cards',
+        description: 'Improves sale rate of your dealers by .1/s',
         action: 'sellers.s01.rps',
         purchased: false,
         mod: 0.1,
@@ -94,7 +94,7 @@ export const upgrades: Record<string, Upgrade> = {
     u10: {
         sid: 'u10',
         label: "Spinnin' Rims",
-        description: "Roll with style! Improves the sale rate of your dealers by .2/s",
+        description: 'Roll with style! Improves the sale rate of your dealers by .2/s',
         action: 'sellers.s01.rps',
         purchased: false,
         mod: 0.2,
@@ -103,8 +103,8 @@ export const upgrades: Record<string, Upgrade> = {
     },
     u11: {
         sid: 'u11',
-        label: "Dealer Slacks",
-        description: "Your dealers now wear nice slacks, reducing suspicion by 1%",
+        label: 'Dealer Slacks',
+        description: 'Your dealers now wear nice slacks, reducing suspicion by 1%',
         action: 'sellers.s01.risk',
         purchased: false,
         mod: -0.01,
@@ -113,8 +113,8 @@ export const upgrades: Record<string, Upgrade> = {
     },
     u12: {
         sid: 'u12',
-        label: "Stuffed Mules",
-        description: "Your Drug Mules can now sell an additional 3 batches at a time",
+        label: 'Stuffed Mules',
+        description: 'Your Drug Mules can now sell an additional 3 batches at a time',
         action: 'sellers.s02.rps',
         purchased: false,
         mod: 3,
@@ -123,8 +123,8 @@ export const upgrades: Record<string, Upgrade> = {
     },
     u13: {
         sid: 'u13',
-        label: "Double Stuffed Mules",
-        description: "Your Drug Mules can now sell an additional 16 batches at a time",
+        label: 'Double Stuffed Mules',
+        description: 'Your Drug Mules can now sell an additional 16 batches at a time',
         action: 'sellers.s02.rps',
         purchased: false,
         mod: 16,
@@ -133,7 +133,7 @@ export const upgrades: Record<string, Upgrade> = {
     },
     u14: {
         sid: 'u14',
-        label: "Dealer Heat",
+        label: 'Dealer Heat',
         description: "Now your dealers are packin' heat, allowing them to safely sell another half-batch at a time",
         action: 'sellers.s01.rps',
         purchased: false,
@@ -143,8 +143,8 @@ export const upgrades: Record<string, Upgrade> = {
     },
     u15: {
         sid: 'u15',
-        label: "Van Jingle",
-        description: "Your drug vans play a catchy jingle to attract more customers, selling 5 more batches at a time",
+        label: 'Van Jingle',
+        description: 'Your drug vans play a catchy jingle to attract more customers, selling 5 more batches at a time',
         action: 'sellers.s03.rps',
         purchased: false,
         mod: 5,
@@ -153,8 +153,8 @@ export const upgrades: Record<string, Upgrade> = {
     },
     u16: {
         sid: 'u16',
-        label: "Extra Sleaze",
-        description: "Your lawyers are now extra sleazy, and can sell an additional 10 batches at a time",
+        label: 'Extra Sleaze',
+        description: 'Your lawyers are now extra sleazy, and can sell an additional 10 batches at a time',
         action: 'sellers.s04.rps',
         purchased: false,
         mod: 10,
@@ -163,8 +163,8 @@ export const upgrades: Record<string, Upgrade> = {
     },
     u17: {
         sid: 'u17',
-        label: "Better Lawyers",
-        description: "Your sleazy lawyers now reduce risk by an additional 5%",
+        label: 'Better Lawyers',
+        description: 'Your sleazy lawyers now reduce risk by an additional 5%',
         action: 'sellers.s04.risk',
         purchased: false,
         mod: -0.05,
@@ -173,8 +173,8 @@ export const upgrades: Record<string, Upgrade> = {
     },
     u18: {
         sid: 'u18',
-        label: "Lawyers 2.0",
-        description: "Your sleazy lawyers now use the Chewbacca Defense. They reduce risk by an additional 5%",
+        label: 'Lawyers 2.0',
+        description: 'Your sleazy lawyers now use the Chewbacca Defense. They reduce risk by an additional 5%',
         action: 'sellers.s04.risk',
         purchased: false,
         mod: -0.05,
@@ -183,8 +183,8 @@ export const upgrades: Record<string, Upgrade> = {
     },
     u19: {
         sid: 'u19',
-        label: "Super Lawyers",
-        description: "Your sleazy lawyers now wear a cape. They reduce risk by an additional 5%",
+        label: 'Super Lawyers',
+        description: 'Your sleazy lawyers now wear a cape. They reduce risk by an additional 5%',
         action: 'sellers.s04.risk',
         purchased: false,
         mod: -0.05,
@@ -193,8 +193,8 @@ export const upgrades: Record<string, Upgrade> = {
     },
     u20: {
         sid: 'u20',
-        label: "Immortal Lawyers",
-        description: "Your lawyers are now demigods. They reduce risk by an additional 10%",
+        label: 'Immortal Lawyers',
+        description: 'Your lawyers are now demigods. They reduce risk by an additional 10%',
         action: 'sellers.s04.risk',
         purchased: false,
         mod: -0.10,
@@ -203,8 +203,8 @@ export const upgrades: Record<string, Upgrade> = {
     },
     u21: {
         sid: 'u21',
-        label: "Diplomatic Immunity",
-        description: "Your diplomats can now sell an extra 1K batches",
+        label: 'Diplomatic Immunity',
+        description: 'Your diplomats can now sell an extra 1K batches',
         action: 'sellers.s08.rps',
         purchased: false,
         mod: 1_000,

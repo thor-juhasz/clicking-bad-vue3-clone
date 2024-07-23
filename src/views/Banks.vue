@@ -1,5 +1,5 @@
 <template>
-    <BankComponent v-for="item in unlockedBanks" v-bind="item" :key="item.sid"/>
+    <BankComponent v-for="item in unlockedBanks" v-bind="item" :key="item.sid" />
 
     <div class="bank-info">
         <h3 class="label">
@@ -23,12 +23,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue"
+import { defineComponent } from 'vue'
 import BankComponent from '@/components/Bank.vue'
 import BankType from '@/types/banks'
 import { banksStore } from '@/store/banks'
 import { formatCurrency, formatNumber } from '@/functions'
-import { statsStore } from "@/store/stats"
+import { statsStore } from '@/store/stats'
 
 export default defineComponent({
     components: { BankComponent },

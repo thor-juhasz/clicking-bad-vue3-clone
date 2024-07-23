@@ -1,4 +1,4 @@
-export default interface Achievement extends Object {
+export default interface Achievement {
     sid: string,
     label: string
     description: string

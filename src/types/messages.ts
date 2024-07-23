@@ -5,7 +5,7 @@ export enum MessageType {
     Error = 'error',
 }
 
-export interface Message extends Object {
+export interface Message {
     id: string
     type: MessageType
     message: string

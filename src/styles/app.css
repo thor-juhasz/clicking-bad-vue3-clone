@@ -1,0 +1,164 @@
+@import "main.css";
+@import "cook_and_sell.css";
+@import "nav.css";
+@import "pages.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+    html, body {
+        font-size: 16px;
+        font-family: Verdana, Helvetica, Arial, sans-serif;
+        color: #333333;
+        background: #2288dd;
+        margin: 8px;
+    }
+
+    .number-float {
+        @apply hidden z-[15000] absolute text-xl font-bold text-shadow opacity-100 pointer-events-none;
+        /*font-size: 1.3em;
+        font-weight: bold;
+        text-shadow: 0 1px 1px #333333;
+        opacity: 1;*/
+        transition: 1s ease-out;
+
+        &.make {
+            color: #5588ff;
+        }
+
+        &.sell {
+            color: #55ee55;
+        }
+    }
+
+    a, span {
+        font-size: 1em;
+        font-family: Verdana, Helvetica, Arial, sans-serif;
+    }
+
+
+
+    .message {
+        display: flex;
+        flex-direction: row;
+        margin-bottom: 2px;
+
+        span:first-child {
+            font-size: 1.4em;
+            line-height: 0.8em;
+            margin-right: 8px;
+            padding: 1px 0 0 0;
+        }
+
+        &.generic {
+            color: #ffffff;
+        }
+        &.good {
+            color: #aaffaa;
+        }
+        &.bad {
+            color: #ffcccc;
+        }
+        &.error {
+            color: #924f4f;
+        }
+    }
+}
+@layer components {
+    .purchasable-item {
+        border-radius: 8px;
+        background-color: #ffffff;
+        margin-bottom: 5px;
+        padding: 2px;
+
+        &:first-child {
+            margin-bottom: 0;
+        }
+
+        &.locked {
+            color: #777777;
+            opacity: 0.5;
+        }
+
+        h3.label {
+            font-size: 1em;
+            margin: 2px;
+
+            &.purchased {
+                color: #00aa00;
+            }
+
+            span.amount {
+                cursor: default;
+                float: right;
+                color: #777777;
+            }
+        }
+
+        p {
+            font-size: 0.8em;
+            margin: 0;
+            padding: 3px;
+
+            &.stats {
+                float: right;
+            }
+
+            em {
+                color: #777777;
+            }
+        }
+
+        button {
+            margin: 1px;
+            background-color: #bbbbbb;
+            border: 1px solid #aaaaaa;
+            border-radius: 5px;
+            color: #ffffff;
+            text-shadow: -1px -1px 0px #aaaaaa;
+            cursor: pointer;
+            font-weight: bold;
+            padding: 5px;
+
+            &:disabled {
+                color: #aaaaaa;
+                background-color: #777777;
+                border-color: #777777;
+                cursor: default;
+                text-shadow: none;
+            }
+        }
+    }
+
+
+    .bank-info {
+        background-color: #ffffff;
+        border-radius: 8px;
+        margin: 5px 0;
+        padding: 10px;
+
+        h3 {
+            font-size: 1em;
+
+            a, a:visited, a:active {
+                cursor: pointer;
+                text-decoration: none;
+                color: #336699;
+            }
+            a:hover {
+                text-decoration: underline;
+            }
+
+            small.amount {
+                float: right;
+            }
+        }
+
+        .finance-info {
+            transition: 1s ease-in-out;
+            overflow: hidden;
+        }
+    }
+}

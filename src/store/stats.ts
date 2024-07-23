@@ -1,5 +1,5 @@
 import { Store } from './store-class'
-import Stats from "@/types/stats"
+import Stats from '@/types/stats'
 
 class StatsStore extends Store<Stats> {
     protected data(): Stats {
@@ -40,20 +40,20 @@ class StatsStore extends Store<Stats> {
             }
 
             switch (key) {
-                case "cheatedBatches":
-                case "cheatedCash":
-                case "cookedByClicks":
-                case "soldByClicks":
-                case "timePlayed":
-                case "lastSaveGame":
-                case "lastDeaBuildingSeize":
-                case "totalCooked":
-                case "totalSold":
-                case "totalCash":
-                case "totalSpent":
-                case "totalBank":
-                case "startTime":
-                    if (typeof data[key] === "number") {
+                case 'cheatedBatches':
+                case 'cheatedCash':
+                case 'cookedByClicks':
+                case 'soldByClicks':
+                case 'timePlayed':
+                case 'lastSaveGame':
+                case 'lastDeaBuildingSeize':
+                case 'totalCooked':
+                case 'totalSold':
+                case 'totalCash':
+                case 'totalSpent':
+                case 'totalBank':
+                case 'startTime':
+                    if (typeof data[key] === 'number') {
                         this.state[key] = data[key]
                     }
                     break

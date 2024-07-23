@@ -10,65 +10,33 @@
     </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue"
+<script setup lang="ts">
+import { computed } from 'vue'
 
-export default defineComponent({
-    props: {
-        sid: {
-            type: String,
-            required: true,
-        },
-        label: {
-            type: String,
-            required: true,
-        },
-        description: {
-            type: String,
-            required: true,
-        },
-        property: {
-            type: String,
-            required: true,
-        },
-        required: {
-            type: Number,
-            required: true,
-        },
-        unlocked: {
-            type: Boolean,
-            required: true,
-        },
-        value: {
-            type: Number,
-            required: true,
-        },
-        group: {
-            type: Number,
-            required: true,
-        },
-        minTime: {
-            type: Number,
-            required: true,
-        },
-        hidden: {
-            type: Boolean,
-            required: true,
-        },
-    },
-    computed: {
-        getAchievementClasses(): object {
-            return {
-                'purchasable-item': true,
-                locked: !this.unlocked,
-            }
-        },
-        getLabelClasses(): object {
-            return {
-                label: true,
-                purchased: this.unlocked,
-            }
-        },
-    },
+const props = defineProps<{
+    sid: string
+    label: string
+    description: string
+    property: string
+    required: number
+    unlocked: boolean
+    value: number
+    group: number
+    minTime: number
+    hidden: boolean
+}>()
+
+const getAchievementClasses = computed(() => {
+    return {
+        'purchasable-item': true,
+        locked: !props.unlocked,
+    }
+})
+
+const getLabelClasses = computed(() => {
+    return {
+        label: true,
+        purchased: props.unlocked,
+    }
 })
 </script>

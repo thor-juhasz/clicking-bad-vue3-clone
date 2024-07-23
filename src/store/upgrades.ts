@@ -1,15 +1,15 @@
 import { Store } from './store-class'
-import { upgrades } from '@/data/upgrades.ts'
-import { cookAndSellStore } from "@/store/cook-and-sell"
-import { sellersStore } from "@/store/sellers"
-import { cookersStore } from "@/store/cookers"
-import { banksStore } from "@/store/banks"
-import Upgrade, { UpgradeAction } from "@/types/upgrades"
-import { statsStore } from "@/store/stats"
-import { messagesStore } from "@/store/messages"
-import { formatPrice } from "@/functions"
+import { upgrades } from '@/data/upgrades'
+import { cookAndSellStore } from '@/store/cook-and-sell'
+import { sellersStore } from '@/store/sellers'
+import { cookersStore } from '@/store/cookers'
+import { banksStore } from '@/store/banks'
+import Upgrade, { UpgradeAction } from '@/types/upgrades'
+import { statsStore } from '@/store/stats'
+import { messagesStore } from '@/store/messages'
+import { formatPrice } from '@/functions'
 
-interface Upgrades extends Object {
+interface Upgrades {
     items: Record<string, Upgrade>
 }
 
@@ -23,37 +23,27 @@ class UpgradesStore extends Store<Upgrades> {
     public loadFromStorage(data: Upgrades) {
         if (
             !Object.prototype.hasOwnProperty.call(data, 'items') ||
-            typeof data.items !== "object"
+            typeof data.items !== 'object'
         ) {
             return
         }
 
-        for (const key in data.items) {
-            if (!Object.prototype.hasOwnProperty.call(data.items, key)) {
-                continue
-            }
-
-            const item: any = data.items[key]
-            for (const itemKey in item) {
-                if (!Object.prototype.hasOwnProperty.call(item, itemKey)) {
-                    continue
-                }
-
-                const itemValue: any = item[itemKey]
+        Object.entries(data.items).forEach(([key, item]) => {
+            Object.entries(item).forEach(([itemKey, itemValue]) => {
                 switch (itemKey) {
-                    case "purchased":
-                    case "hidden":
-                        if (typeof itemValue === "boolean") {
+                    case 'purchased':
+                    case 'hidden':
+                        if (typeof itemValue === 'boolean') {
                             this.state.items[key][itemKey] = itemValue
                         }
                         break
                 }
-            }
-        }
+            })
+        })
     }
 
     public loadIntoStorage(): string {
-        const data: any = {}
+        const data: Record<string, Pick<Upgrade, 'purchased' | 'hidden'>> = {}
         for (const key in this.state.items) {
             if (!Object.prototype.hasOwnProperty.call(this.state.items, key)) {
                 continue
@@ -255,7 +245,7 @@ class UpgradesStore extends Store<Upgrades> {
         const item = this.state.items.u70
         if (!item.purchased) {
             cookAndSellStore.modifyBatchPurity(item.mod)
-            messagesStore.addGoodMessage(`You have unlocked the "Thank You" hidden upgrade`)
+            messagesStore.addGoodMessage('You have unlocked the "Thank You" hidden upgrade')
             item.purchased = true
             item.hidden = false
 
