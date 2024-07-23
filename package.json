@@ -36,4 +36,5 @@
     "eslint-plugin-vue": "^7.0.0-0",
     "typescript": "~3.9.3"
   }
+  "packageManager": "yarn@4.3.1"
 }
