@@ -14,4 +14,5 @@ export default defineConfig({
     resolve: {
         alias: { '@': path.resolve('src') },
     },
+    base: '/clicking-bad',
 })
