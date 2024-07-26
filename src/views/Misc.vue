@@ -181,7 +181,7 @@ export default defineComponent({
         },
 
         getFromStorage(key: string) {
-            const storage: object = getFromStorage()
+            const storage: Record<string, unknown> = getFromStorage()
 
             return storage[key]
         },

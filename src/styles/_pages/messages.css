@@ -11,7 +11,7 @@
   @media screen and (min-width: 1300px) {
     flex-direction: row;
     flex-wrap: wrap;
-    //margin: 0 -5px;
+    /*margin: 0 -5px;*/
   }
 
   .message {

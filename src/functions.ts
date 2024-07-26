@@ -263,7 +263,7 @@ const loadData = (data: object) => {
     })
 }
 
-const decodeData = (data: string): object => {
+const decodeData = (data: string): Record<string, unknown> => {
     const decodedData = JSON.parse(atob(data))
     if (typeof decodedData !== 'object') {
         throw new TypeError('Corrupt data in storage')
@@ -285,7 +285,7 @@ const decodeData = (data: string): object => {
     return decodedData
 }
 
-export const getFromStorage = (): object => {
+export const getFromStorage = (): Record<string, unknown> => {
     const storage = localStorage.getItem(`cbvc`)
     if (!storage) {
         throw new TypeError('No data in storage')
